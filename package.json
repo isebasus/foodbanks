@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/ZumbaMaster313/Grocery/issues"
   },
-  "homepage": "https://github.com/ZumbaMaster313/Grocery#readme"
+  "homepage": "https://github.com/ZumbaMaster313/Grocery#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.1.0"
+  }
 }
