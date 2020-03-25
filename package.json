@@ -1,0 +1,19 @@
+{
+  "name": "grocery",
+  "version": "1.0.0",
+  "description": "\"# Grocery\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZumbaMaster313/Grocery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZumbaMaster313/Grocery/issues"
+  },
+  "homepage": "https://github.com/ZumbaMaster313/Grocery#readme"
+}
