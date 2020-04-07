@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/ZumbaMaster313/Grocery#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "noodlejs": "^0.3.2"
   },
   "devDependencies": {
     "grunt": "^1.1.0"
