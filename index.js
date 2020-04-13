@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 router.get('/result', function(req, res) {
     var location = req.query.location;
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
-    queryB = '&key=KEY';
+    queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
 
 
@@ -30,19 +30,43 @@ router.get('/result', function(req, res) {
         const json = JSON.stringify(body);
         const obj = JSON.parse(json);
 
-        var output = '';
+        var output = [];
 
+        var result = [];
+        for(var i in obj){
+            result.push(obj['results']);
+        }
+       
+        var dataArr = [];
+        for (var i = 0; i < result.length; i++){
+            dataArr = result[i];
+        }
 
-        for (var i = 0; i < obj['results'].length; i++){
-            var bit = obj['results'][i];
-            output += '[formatted_address: "' + bit['formatted_address'] +
-            '" name: "' + bit['name'] +
-            '" rating: "' + bit['rating'] +
-            '" location : "' + bit['geometry'] +
-        '   ]\n';
-        };
+        for (var i = 0; i < dataArr.length; i++){
+            var makeAr = [];
+            var open = [];
 
-        console.log(output);
+            var object = {}
+            object["address"] = dataArr[i].formatted_address;
+            object["name"] = dataArr[i].name;
+            object["rating"] = dataArr[i].rating;
+            object['latitude'] = dataArr[i].geometry.location.lat;
+            object['longitude'] = dataArr[i].geometry.location.lng;
+
+            open.push(dataArr[i].opening_hours);
+            for(var z = 0; z < open.length; z++){
+                try{
+                    object["open"] = open[0].open_now;
+                }
+                catch (e) {object["open"] = "no information"}
+            }
+
+            makeAr.push(object);
+            output.push(makeAr);
+
+        }
+    
+       console.log(output)
 
     })
 
