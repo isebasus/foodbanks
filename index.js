@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const request = require('request');
 const cheerio = require("cheerio");
+const http = require('https');
 const parseString = require('xml2js').parseString;
 const app = express();
 const hostname = '127.0.0.1';
@@ -22,11 +23,63 @@ router.get('/result', function(req, res) {
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
 
+    let request = http.get(query, {json: true}, function(response){
+        let jsonResponse = '';
+        response.on('data', function(chunk) {
+            jsonResponse += chunk;
+        });
+        response.on('end', function() {
+            const obj = JSON.parse(jsonResponse);
 
+            var output = [];
+
+            var result = [];
+            for(var i in obj){
+                result.push(obj['results']);
+            }
+       
+            var dataArr = [];
+            for (var i = 0; i < result.length; i++){
+                dataArr = result[i];
+            }
+
+            for (var i = 0; i < dataArr.length; i++){
+                var makeAr = [];
+                var open = [];
+
+                var object = {}
+                object["address"] = dataArr[i].formatted_address;
+                object["name"] = dataArr[i].name;
+                object["rating"] = dataArr[i].rating;
+                object['latitude'] = dataArr[i].geometry.location.lat;
+                object['longitude'] = dataArr[i].geometry.location.lng;
+
+                open.push(dataArr[i].opening_hours);
+                for(var z = 0; z < open.length; z++){
+                    try{
+                        object["open"] = open[0].open_now;
+                    }
+                    catch (e) {object["open"] = "no information"}
+                }
+
+                makeAr.push(object);
+                output.push(makeAr);
+            }
+            res.send(output);
+        })
+    });
+    request.on('error', function(error) {
+        console.log(error)
+    })
+    request.end();
+
+    /*
     request(query, {json: true}, (err, res, body) => {
         if (err) {
             return console.log(err);
         }
+
+
         const json = JSON.stringify(body);
         const obj = JSON.parse(json);
 
@@ -63,13 +116,10 @@ router.get('/result', function(req, res) {
 
             makeAr.push(object);
             output.push(makeAr);
-
         }
-    
-       console.log(output)
-
-    })
-
+        res.
+    });
+    console.log(jsonResponse);*/
 });
 
 
