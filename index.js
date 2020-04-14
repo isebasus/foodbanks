@@ -1,31 +1,36 @@
 const express = require('express');
 const path = require('path');
-const request = require('request');
-const cheerio = require("cheerio");
+var bodyParser = require("body-parser")
 const http = require('https');
-const parseString = require('xml2js').parseString;
 const app = express();
 const hostname = '127.0.0.1';
 const port = 8080;
 const router = express.Router();
+
+
+app.set('view engine', 'ejs');
+
+app.set("views", __dirname+"/views");
 
 if (app.get('env') === 'development') {
     app.locals.pretty = true;
 }
 
 router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/index.html'));
+    res.render("index");
 });
 
 router.get('/banks', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/result.html'));
+    var location = req.query.location;
+
+    res.render("result", {loc: location});
 });
 
 router.get('/result', function(req, res) {
     var location = req.query.location;
-
+    
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
-    queryB = '&key=KEY';
+    queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
 
     let request = http.get(query, {json: true}, function(response){
@@ -49,7 +54,6 @@ router.get('/result', function(req, res) {
             }
 
             for (var i = 0; i < dataArr.length; i++){
-                var makeAr = [];
                 var open = [];
 
                 var object = {}
@@ -67,8 +71,7 @@ router.get('/result', function(req, res) {
                     catch (e) {object["open"] = "no information"}
                 }
 
-                makeAr.push(object);
-                output.push(makeAr);
+                output.push(object);
             }
             res.send(output);
         })
