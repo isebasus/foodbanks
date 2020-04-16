@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/shopping-bags_1f6cd.png" />
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <title>Grocery</title>
     </head>
@@ -17,7 +16,8 @@
         -moz-osx-font-smoothing: grayscale;
     }
     body {
-        background-color: #141414;
+        overflow: hidden;
+        background-color: #0f0f10;
         min-height: 90vh;
         margin-left: 30px;
         overflow-x: hidden;
@@ -45,6 +45,7 @@
     }
 
     .body{
+        float: left;
         margin-right: 50px;
     }
     p{
@@ -53,23 +54,40 @@
         font-weight: normal;
         text-align: left;
     }
+    #map {
+        width: 70%;
+        height: 700px;
+        float:left;
+        transform-style:preserve-3d;
+        transform:perspective(auto) translateZ(-30vw) scale(1.4);
+        perspective:1000;     
+      }
     </style>
     <script type='text/javascript'>
-      
 
         $(document).ready(function(){
-            var location = <%= loc %>;
+            let zip = <%= loc %>;
+            var locate = [];
 
             $.ajax({
-                url: "http://localhost:8080/result?location=" + location,
+                url: "http://localhost:8080/result?location=" + zip,
                 type: 'GET',
                 dataType: 'json', // added data type
                 success: function(res) {
+                    var places = [];
                     for(var i = 0; i < res.length; i++){
+                        var locationAr = [];
+
                         var address = JSON.stringify(res[i].address);
                         var name = JSON.stringify(res[i].name);
                         var isOpen = res[i].open;
                         var rating = JSON.stringify(res[i].rating);
+                        var latitude = res[i].latitude;
+                        var longitude = res[i].longitude;
+                    
+
+                        locationAr.push(latitude, longitude);
+                        places.push(locationAr);
 
                         var open = ""
                         if(isOpen){
@@ -82,19 +100,265 @@
                         }
                         $(".body").append('<div class="location"><h2>' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div> ');
                     }
+                    locate.push(places);
 
                 },
                 error: function(error) {
                     console.log(error);
                 }
             });
+            alert(JSON.stringify(locate));
         });
+        function initMap() {
+                    // The location of Uluru
+                    var uluru = {lat: -25.344, lng: 131.036};
+                    // The map, centered at Uluru
+                    var map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 10, 
+                        center: uluru,
+                        disableDefaultUI: true,
+                        gestureHandling: 'greedy',
+                        minZoom: 5,
+                        styles: [
+                    {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#212121"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#212121"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#757575"
+      },
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.country",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#181818"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#1b1b1b"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#2c2c2c"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#8a8a8a"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#373737"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#3c3c3c"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway.controlled_access",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#4e4e4e"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#141414"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#3d3d3d"
+      }
+    ]
+  }
+
+                        ]
+
+                    });
+                    // The marker, positioned at Uluru
+                    var marker = new google.maps.Marker({position: uluru, map: map});
+                }
     </script>
     <body>
         <div class="content">
             <div class="body">
                 <h1><%= loc %></h1>
             </div>
+            <div id="map"></div>
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjk1KFIS4RI4IdnHPe-_Z7UBrzkl3CFsU&callback=initMap">
+            </script>
         </div>
     </body>
 </html>
