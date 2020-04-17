@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
 var bodyParser = require("body-parser")
-const http = require('https');
+const https = require('https');
+const http = require('http');
 const app = express();
+var EventEmitter = require('events').EventEmitter;
 const hostname = '127.0.0.1';
 const port = 8080;
 const router = express.Router();
@@ -23,7 +25,33 @@ router.get('/', function(req, res) {
 router.get('/banks', function(req, res) {
     var location = req.query.location;
 
-    res.render("result", {loc: location});
+    setTimeout(() => {
+        var responseData = new EventEmitter();
+
+        var query = "http://localhost:8080/result?location=" + location;
+
+        let request = http.get(query, {json: true}, function(response){
+            let jsResponse = '';
+            response.on('data', function(chunk) {
+                jsResponse += chunk;
+            });
+            response.on('end', function(){
+                var obj = JSON.parse(jsResponse);
+                responseData.obj = obj;
+                responseData.emit('update');
+            });
+        });
+        request.on('error', function(error) {
+            console.log(error)
+        });
+        request.end();
+
+        responseData.on('update', function(){
+            res.render("result", {loc: location, data: responseData.obj});
+        });
+
+    }, 2000);
+
 });
 
 router.get('/result', function(req, res) {
@@ -33,7 +61,7 @@ router.get('/result', function(req, res) {
     queryB = '&key=KEY';
     var query = queryA + 'food+banks+' + location + queryB;
 
-    let request = http.get(query, {json: true}, function(response){
+    let request = https.get(query, {json: true}, function(response){
         let jsonResponse = '';
         response.on('data', function(chunk) {
             jsonResponse += chunk;
