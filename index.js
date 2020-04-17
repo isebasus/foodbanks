@@ -30,7 +30,7 @@ router.get('/result', function(req, res) {
     var location = req.query.location;
     
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
-    queryB = '&key=KEY';
+    queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
 
     let request = http.get(query, {json: true}, function(response){
