@@ -47,7 +47,9 @@ router.get('/banks', function(req, res) {
         request.end();
 
         responseData.on('update', function(){
-            res.render("result", {loc: location, data: responseData.obj});
+
+            var dataResponse = JSON.stringify(responseData.obj);
+            res.render("result", {loc: location, data: dataResponse});
         });
 
     }, 2000);
@@ -58,7 +60,7 @@ router.get('/result', function(req, res) {
     var location = req.query.location;
     
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
-    queryB = '&key=KEY';
+    queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
 
     let request = https.get(query, {json: true}, function(response){
