@@ -2,8 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/shopping-bags_1f6cd.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjk1KFIS4RI4IdnHPe-_Z7UBrzkl3CFsU&callback=initMap">
+        </script>
         <title>Grocery</title>
     </head>
     <style>
@@ -58,6 +61,7 @@
     h2{
         text-align: left;
     }
+
     .location{
         background-color: rgb(255, 255, 255, 0.1);
         border-radius: 3px;
@@ -65,7 +69,31 @@
         padding-right: 100px;
         width: 230px;
         margin-bottom: 25px;
+        transition: transform .15s; 
+        cursor: pointer;
     }
+
+    .location:hover{
+        -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .location:active{
+        -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+    }
+
+    .location:visited{
+        -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+    }
+
     .body{
         background-color: #0f0f10;
         position: fixed;
@@ -92,16 +120,20 @@
     }
     </style>
     <script type='text/javascript'>
+        var map;
+        var markers = [];
 
         $(document).ready(function(){
             var locations = <%- data %>
             
+
+            var increment = 0;
             for(var i = 0; i < locations.length; i++){
                 var address = JSON.stringify(locations[i].address);
                 var name = JSON.stringify(locations[i].name);
                 var isOpen = locations[i].open;
                 var rating = JSON.stringify(locations[i].rating);
-      
+                
                 var open = ""
                 if(isOpen){
                     open = "Open"
@@ -111,8 +143,48 @@
                 else{
                     open = ""
                 }
-                $(".body").append('<div class="location"><h2>' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div> ');
+                $(".body").append('<div class="location" id="' + increment + '"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div> ');
+                increment++; 
             }
+
+            $(".location").click(function(){
+                
+                var bigicon = {
+                    url: "https://lh4.googleusercontent.com/uRw3Dmel1O0kdzRfegGfDAMIpbbZeXdBj56t_m-6YZ8qbE6MxyS3kLn06Lkfgy-k66zmu42KqI5kWLcoP7qA=w1920-h992", // url
+                    scaledSize: new google.maps.Size(30, 30), // scaled size
+                    origin: new google.maps.Point(0,0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
+
+                var icon = {
+                    url: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/round-pushpin_1f4cd.png", // url
+                    scaledSize: new google.maps.Size(30, 30), // scaled size
+                    origin: new google.maps.Point(0,0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
+
+                var idIncrement = 0;
+                for(var i = 0; i < markers.length; i++){
+                    markers[i].setIcon(icon);
+                    $("#name" + idIncrement + "").css({"text-decoration": "none"});
+                    idIncrement++;
+                }
+
+                var idNumber = 0;
+                for(var i = 0; i < locations.length; i++){
+                    var num = idNumber.toString();
+                    if($(this).attr("id") == num){
+                        if(markers[idNumber].id == "marker_" + idNumber){
+                            map.setZoom(14);
+                            map.panTo(markers[idNumber].position);
+                            markers[idNumber].setIcon(bigicon);
+                            $("#name" + idNumber + "").css({"text-decoration": "underline"});
+                        }
+                    }
+                    idNumber++;
+                }
+                
+            });
 
         });
 
@@ -135,13 +207,14 @@
             // The location of Uluru
             var uluru = {lat: dataLocations[0].latitude, lng: dataLocations[0].longitude};
             // The map, centered at Uluru
-            var map = new google.maps.Map(
+            map = new google.maps.Map(
             document.getElementById('map'), {
                 zoom: 13, 
                 center: uluru,
                 disableDefaultUI: true,
                 gestureHandling: 'greedy',
                 minZoom: 5,
+                zoomControl: true,
                 styles: [
                 {
                     "elementType": "geometry",
@@ -372,16 +445,51 @@
                 origin: new google.maps.Point(0,0), // origin
                 anchor: new google.maps.Point(0, 0) // anchor
             };
-                 
-            for(i = 0; i < dataLocations.length; i++){
+              
+            var bigicon = {
+                    url: "https://lh4.googleusercontent.com/uRw3Dmel1O0kdzRfegGfDAMIpbbZeXdBj56t_m-6YZ8qbE6MxyS3kLn06Lkfgy-k66zmu42KqI5kWLcoP7qA=w1920-h992", // url
+                    scaledSize: new google.maps.Size(30, 30), // scaled size
+                    origin: new google.maps.Point(0,0), // origin
+                    anchor: new google.maps.Point(0, 0) // anchor
+                };
+
+            var int = 0;
+            for(var i = 0; i < dataLocations.length; i++){
                 var locations = dataLocations[i];
                 var marker = new google.maps.Marker({
                     position: {lat: locations.latitude, lng: locations.longitude},
                     icon: icon,
-                    map: map
+                    map: map,
+                    id: 'marker_' + int,
                 });
+                markers.push(marker);
+
+                google.maps.event.addListener(marker, 'click', (function(marker) {
+                    return function() {
+                        var int = 0;
+                        for(var i = 0; i < markers.length; i++){
+                            markers[i].setIcon(icon);
+                            $("#name" + int + "").css({"text-decoration": "none"});
+                            int++;
+                        }
+                        var objectId = marker.id.split('_')[1];
+                        $('.body').animate({
+                            scrollTop: $("#"+ objectId +"").offset().top -200},
+                        'fast');
+                        
+                        $("#name" + objectId + "").css({"text-decoration": "underline"});
+                        map.setZoom(14);
+                        map.panTo(marker.position);
+                        marker.setIcon(bigicon);
+                    }
+                })(marker));
+
+
+                int++;
             }
+
         }
+
     </script>
     <body>
         <div class="content">
@@ -391,9 +499,6 @@
             <div class="container">
                 <div id="map"></div>
             </div>
-            <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjk1KFIS4RI4IdnHPe-_Z7UBrzkl3CFsU&callback=initMap">
-            </script>
         </div>
     </body>
 </html>
