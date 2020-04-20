@@ -5,9 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/shopping-bags_1f6cd.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjk1KFIS4RI4IdnHPe-_Z7UBrzkl3CFsU&callback=initMap">
-        </script>
-        <title>Grocery</title>
+        <title>Food Banks</title>
     </head>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap');
@@ -107,17 +105,12 @@
         grid-gap: 30px 30px;
         gap: 30px 30px;
     }
-
-    .contain{
-        position: relative;
-    }
-
     div{
         display: block;
     }
 
     .body{
-        background-color: #ededed;
+        background-color: #f0f0f0;
         position: fixed;
         z-index: 100;
         top: 0;
@@ -129,10 +122,6 @@
         overflow-y: scroll;
         overflow-x: hidden;
         height: 100%;
-    }
-
-    .content{
-        width: inherit;
     }
 
     p{
@@ -147,7 +136,7 @@
       }
     
     .continer{
-        position: fixed;
+        position: relative;
     }
 
     @media only screen and (max-width: 470px){
@@ -205,7 +194,7 @@
             $(".location").click(function(){
                 
                 var bigicon = {
-                    url: "https://lh4.googleusercontent.com/uRw3Dmel1O0kdzRfegGfDAMIpbbZeXdBj56t_m-6YZ8qbE6MxyS3kLn06Lkfgy-k66zmu42KqI5kWLcoP7qA=w1920-h992", // url
+                    url: "https://i.ibb.co/YNr0qjd/round-pushpin-1f4cdbetter.png", // url
                     scaledSize: new google.maps.Size(30, 30), // scaled size
                     origin: new google.maps.Point(0,0), // origin
                     anchor: new google.maps.Point(0, 0) // anchor
@@ -492,7 +481,7 @@
             };
               
             var bigicon = {
-                    url: "https://lh4.googleusercontent.com/uRw3Dmel1O0kdzRfegGfDAMIpbbZeXdBj56t_m-6YZ8qbE6MxyS3kLn06Lkfgy-k66zmu42KqI5kWLcoP7qA=w1920-h992", // url
+                    url: "https://i.ibb.co/YNr0qjd/round-pushpin-1f4cdbetter.png", // url
                     scaledSize: new google.maps.Size(30, 30), // scaled size
                     origin: new google.maps.Point(0,0), // origin
                     anchor: new google.maps.Point(0, 0) // anchor
@@ -544,6 +533,7 @@
         </div>
         <div class="container">
             <div id="map"></div>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjk1KFIS4RI4IdnHPe-_Z7UBrzkl3CFsU&callback=initMap"></script>
         </div>
     </body>
 </html>

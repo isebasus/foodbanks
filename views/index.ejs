@@ -2,12 +2,13 @@
 <html>
     <head>
         <link rel="stylesheet" href="../static/styesheets/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/shopping-bags_1f6cd.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <title>Grocery</title>
+        <title>Food Banks</title>
     </head>
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700,800&display=swap');
     * {
         color: white;
         font-family: 'Roboto Mono', monospace;
@@ -24,22 +25,54 @@
         background: #ffb1b1
     }
     
-    body, html{
+    body{
+        width: 100%;
+        height: 100vh;
         background-color: #fff;
-        display: grid;
-        height: 99%;
+        font-family: 'Roboto Mono', monospace;
+        -webkit-font-smoothing: subpixel-antialiased;
+        text-rendering: optimizeLegibility;
         overflow: hidden;
     }
 
-    #body{
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; 
+    .row{
+        max-width: 90rem;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .column{
+        padding-right: .625rem;
+        padding-left: .625rem;
+        width: 100%
+    }
+
+    .textLeft{
+        text-align: left;
+    }
+
+    .textRight{
+        text-align: right;
+    }
+
+    .a{
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 3em;
+        margin-bottom: 0.5em;
+        transition: 0.2s ease 0s;
+        color: black;
+    }
+
+    a{
+        cursor: pointer;
     }
  
     input[type=submit]{
-        background-color: white;
+        background-color: rgba(0, 0, 0, 0.1);
         color: #141414;
         border-radius: 5px;
         border: 0px;
@@ -47,78 +80,91 @@
         font-weight: 700;
         user-select: none;
         text-decoration: none;
-        animation: show 1s infinite;
         cursor: pointer;
         letter-spacing: 0.2vw;
         font-family: 'Roboto Mono', monospace;
-        transition: transform .1s ease; 
-        display: inline-block;
-        margin: 0 auto;
+        transition: .1s ease; 
+    
     }
 
-    form{
-        position: relative;
+    
+    div{
+        display: block;
     }
 
-    #overlay{
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0,0,0,0.5);
-        z-index: 2;
-        text-align: center;
-    }
     input{
-        margin-top: 20px;
         color: black;
-        background-color: white;
+        background-color: rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         border: none;
         padding: 10px;
+        caret-color: #535353;
+        outline: none;
+        display: inline-block;
+        width: 400px;
+        position: relative;
+        display: block;
+        margin: 0 auto;
     }
-    #text{
-        font-size: 50px;
-        color: white;    
-        }
+    
+
     input[type=submit]:hover{
         -webkit-transform: scale(1.015);
         -ms-transform: scale(1.015);
         transform: scale(1.015);
     }
-    h1{
-        padding-left: 20px;
-        font-weight: 500;
+
+    .footer{
+        display: block;
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.1);
+        font-size: 0.6em;
+        z-index: 1;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        vertical-align: baseline;
     }
+
     #container {
-    margin: auto;
-    padding-bottom: 150px;
-}
-#header {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-    color: rgba(15, 15, 16, 0.9);
-    font-size: 96px;
+        max-width: 995px;
+        margin: 0px auto;
+        padding: 40px 15px;
+        background-size: cover;
+    }
+
+#first{
+    font-weight: 900;
+    line-height: 1;
     text-align: center;
-    padding-bottom: 30px;
-    margin: 0px;
-    animation: zoom 1s;
+    font-size: 6.4rem;
+    height: 150px;
+    -webkit-background-clip: text;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: rgba(15, 15, 16, 0.9);
 }
 
-#bad {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: none;
-    color: #F1F1F1;
-    font-size: 40px;
+#caption{
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: #ffffff;
+    font-weight: 400;
+    opacity: 0.8;
     text-align: center;
-    padding-bottom: 30px;
-    margin: 0px;
-    animation: zoom 1s;
-    user-select: none;
+    font-weight: 400;
+    margin-top: -100px;
+    color: #0f0f10;  
 }
+
 #headline {
     font-family: 'Roboto Mono', monospace;
     font-weight: 500;
@@ -157,6 +203,55 @@
 #form {
     position: relative;
 }
+
+        @media only screen and (max-width: 995px){
+            #first{
+                height: 160px;
+            }
+
+        }
+
+        @media only screen and (max-width: 770px){
+            #first{
+                font-size: 3.6rem;
+                height: 140px;
+            }   
+
+            #title{
+                font-size: 3rem;
+                height: 135px;
+            }
+
+            #caption{
+                font-size: 1.8rem;
+            }
+
+
+        }
+
+        @media only screen and (max-width: 577px){
+            #first{
+                height: 160px;
+            }
+            .a{
+                font-size: 2em;
+            }
+
+            input{
+                width: 300px;
+            }
+
+        }
+
+        @media only screen and (max-width: 392px){
+            
+            input{
+                width: 200px;
+            }
+            #first{
+                height: 200px;
+            }
+        }
     </style>
     <script>
         if (navigator.geolocation) {
@@ -176,11 +271,21 @@
     </script>
     <body>
         <div id="container">
-            <h1 id="header">Food Banks</h1>
+            <h1 id="first">Food Banks</h1>
+            <h2 id="caption">👋 Hello there, enter your Zip Code to find food banks near you.</h2>
             <form action="/banks" method="GET">
                 <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code">
             </form>
         </div>
-
+        <footer class="footer">
+            <div class="row">
+                <div class="column textLeft">
+                    <a class="a" href="https://isebasus/">Isebas.us</a>
+                </div>
+                <div class="column textRight">
+                    <a class="a" href="https://www.buymeacoffee.com/isebasus">buymeacoffee.com</a>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
