@@ -5,7 +5,7 @@ const https = require('https');
 const http = require('http');
 const app = express();
 var EventEmitter = require('events').EventEmitter;
-const hostname = '66.42.109.77';
+const hostname = '127.0.0.1';
 const port = 8080;
 const router = express.Router();
 
@@ -28,7 +28,7 @@ router.get('/banks', function(req, res) {
     setTimeout(() => {
         var responseData = new EventEmitter();
 
-        var query = "http://66.42.109.77:8080/result?location=" + location;
+        var query = `http://${hostname}:${port}/result?location=` + location;
 
         let request = http.get(query, {json: true}, function(response){
             let jsResponse = '';
