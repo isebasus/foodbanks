@@ -107,7 +107,7 @@ router.get('/result', function(req, res) {
         })
     });
     request.on('error', function(error) {
-        console.log(error)
+        console.log("hello")
     })
     request.end();
 
