@@ -15,20 +15,29 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
-    body {
-        background-color: #141414;
-        min-height: 90vh;
+
+    ::selection {
+        background: #ffb1b1
     }
+
+    ::-moz-selection {
+        background: #ffb1b1
+    }
+    
+    body, html{
+        background-color: #fff;
+        display: grid;
+        height: 99%;
+        overflow: hidden;
+    }
+
     #body{
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
         align-items: center; 
     }
-    div{
-        padding-top: 20px;
-        padding-left: 20px;
-    }
+ 
     input[type=submit]{
         background-color: white;
         color: #141414;
@@ -41,10 +50,16 @@
         animation: show 1s infinite;
         cursor: pointer;
         letter-spacing: 0.2vw;
-        vertical-align: middle;
         font-family: 'Roboto Mono', monospace;
         transition: transform .1s ease; 
+        display: inline-block;
+        margin: 0 auto;
     }
+
+    form{
+        position: relative;
+    }
+
     #overlay{
         position: fixed;
         width: 100%;
@@ -78,6 +93,70 @@
         padding-left: 20px;
         font-weight: 500;
     }
+    #container {
+    margin: auto;
+    padding-bottom: 150px;
+}
+#header {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    color: rgba(15, 15, 16, 0.9);
+    font-size: 96px;
+    text-align: center;
+    padding-bottom: 30px;
+    margin: 0px;
+    animation: zoom 1s;
+}
+
+#bad {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: none;
+    color: #F1F1F1;
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 30px;
+    margin: 0px;
+    animation: zoom 1s;
+    user-select: none;
+}
+#headline {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    color: #9D9D9D;
+    font-size: 24px;
+    text-align: center;
+    padding:30px 0px 0px 0px;
+    margin: 0px 0px 50px 0px;
+    animation: fade_in 1s ease-in forwards;
+    animation-delay: 0.5s;
+    visibility: hidden;
+    user-select: none;
+}
+#r {
+    display: inline-block;
+    width: 400px;
+    padding: 15px;
+    background-color: #303030;
+    -webkit-appearance: none;
+    border: none;
+    font-size: 20px;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 500;
+    color: #c0c0c0;
+    margin: 0 auto;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 11px;
+    animation: fade_up 2s ease-in forwards;
+    animation-delay: 0.3s;
+    caret-color: #535353;
+    visibility: hidden;
+}
+#r::placeholder {
+    color: #777777;
+}
+#form {
+    position: relative;
+}
     </style>
     <script>
         if (navigator.geolocation) {
@@ -96,12 +175,12 @@
         
     </script>
     <body>
-        <h1></h1>
-        <div id="body">
-            <div>
-                <form action="/banks" method="GET">
-                    <input name="location" type="text" class="d1" id="c1" placeholder="your IP">
-                </form>
-            </div>
+        <div id="container">
+            <h1 id="header">Food Banks</h1>
+            <form action="/banks" method="GET">
+                <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code">
+            </form>
+        </div>
+
     </body>
 </html>

@@ -18,7 +18,7 @@
     }
 
     ::-webkit-scrollbar-track {
-        background: rgb(255, 255, 255, 0.1);
+        background: rgb(0, 0, 0, 0.25);
     }
 
     ::-webkit-scrollbar-thumb {
@@ -41,14 +41,12 @@
         font-weight: 700;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        box-sizing: border-box;
     }
+
     body {
-        height: 100%;
-        width: 100%;
         overflow: hidden;
-        background-color: #0f0f10;
-        margin-left: 30px;
-        overflow-x: hidden;
+        background-color: #fafafa;
     }
     #text{
         font-size: 50px;
@@ -56,56 +54,89 @@
         }
     h1{
         font-weight: 500;
-        color: rgb(209, 197, 173);
     }
+
+    a{
+        color: rgba(0, 0, 0, 0.3)
+    }
+
     h2{
+        color: #0f0f10;
         text-align: left;
     }
 
     .location{
-        background-color: rgb(255, 255, 255, 0.1);
+        position: relative;
+        background-color: #fff;
         border-radius: 3px;
         padding: 1.5rem;
-        padding-right: 100px;
-        width: 230px;
-        margin-bottom: 25px;
         transition: transform .15s; 
         cursor: pointer;
+    }
+
+    .cover{
+        width: 100%;
+        background-size: cover;
     }
 
     .location:hover{
         -webkit-transform: translateY(-3px);
         -ms-transform: translateY(-3px);
         transform: translateY(-3px);
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     }
 
     .location:active{
         -webkit-transform: translateY(-3px);
         -ms-transform: translateY(-3px);
         transform: translateY(-3px);
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     }
 
     .location:visited{
         -webkit-transform: translateY(-3px);
         -ms-transform: translateY(-3px);
         transform: translateY(-3px);
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .columns{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        grid-gap: 30px 30px;
+        gap: 30px 30px;
+    }
+
+    .contain{
+        position: relative;
+    }
+
+    div{
+        display: block;
     }
 
     .body{
-        background-color: #0f0f10;
+        background-color: #ededed;
         position: fixed;
-        z-index: 1;
+        z-index: 100;
         top: 0;
         left: 0;
+        width: 450px;
         max-height: 100vh;
-        padding-right: 30px;
-        padding-left: 30px;
+        margin: 0 auto;
+        padding: 0px 30px;
         overflow-y: scroll;
+        overflow-x: hidden;
+        height: 100%;
     }
+
+    .content{
+        width: inherit;
+    }
+
     p{
+        color: #0f0f10;
         width: 300px;
         position: relative;
         font-weight: normal;
@@ -116,8 +147,32 @@
       }
     
     .continer{
-        position: relative;
+        position: fixed;
     }
+
+    @media only screen and (max-width: 470px){
+        .body{
+            padding: 0px 15px;
+            margin-top: 250px;
+            border-top: 6px solid rgb(0, 0, 0, 0.25);
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+        width: 3px
+        }
+    }
+
+    @media only screen and (max-width: 370px){
+        .body{
+            padding: 0px 5px;
+        }
+
+        ::-webkit-scrollbar {
+        width: 2px
+        }
+    }
+
     </style>
     <script type='text/javascript'>
         var map;
@@ -136,14 +191,14 @@
                 
                 var open = ""
                 if(isOpen){
-                    open = "Open"
+                    open = "Open ✔️"
                 } else if (isOpen == false){
-                    open = "Closed"
+                    open = "Closed ❌"
                 }
                 else{
                     open = ""
                 }
-                $(".body").append('<div class="location" id="' + increment + '"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div> ');
+                $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div></div> ');
                 increment++; 
             }
 
@@ -217,226 +272,216 @@
                 zoomControl: true,
                 styles: [
                 {
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#212121"
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#757575"
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "color": "#212121"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#757575"
-                        },
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative.country",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#9e9e9e"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative.land_parcel",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative.locality",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#bdbdbd"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#757575"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.park",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#181818"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.park",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#616161"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.park",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "color": "#1b1b1b"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#2c2c2c"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        { 
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#8a8a8a"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#373737"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#3c3c3c"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway.controlled_access",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#4e4e4e"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#616161"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#757575"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#000000"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#141414"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#3d3d3d"
-                        }
-                    ]
-                }
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dadada"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  }
+
                         ]
             });
             var icon = {
@@ -474,8 +519,8 @@
                         }
                         var objectId = marker.id.split('_')[1];
                         $('.body').animate({
-                            scrollTop: $("#"+ objectId +"").offset().top -200},
-                        'fast');
+                            scrollTop: $("#"+ objectId +"").offset().top - 400 + $(".body").scrollTop()},
+                        'slow');
                         
                         $("#name" + objectId + "").css({"text-decoration": "underline"});
                         map.setZoom(14);
@@ -492,13 +537,13 @@
 
     </script>
     <body>
-        <div class="content">
-            <div class="body">
-                <h1><%= loc %></h1>
+        <div class="body">
+            <h1><a> <%= loc %></a></h1>
+            <div class="columns">
             </div>
-            <div class="container">
-                <div id="map"></div>
-            </div>
+        </div>
+        <div class="container">
+            <div id="map"></div>
         </div>
     </body>
 </html>
