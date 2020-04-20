@@ -42,7 +42,7 @@ router.get('/banks', function(req, res) {
             });
         });
         request.on('error', function(error) {
-            console.log(error)
+            console.log("bad")
         });
         request.end();
 
