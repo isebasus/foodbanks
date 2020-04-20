@@ -60,7 +60,7 @@ router.get('/result', function(req, res) {
     
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
-    var query = queryA + 'food+banks+' + location + queryB;
+    var query = queryA + 'foodbanks+' + location + queryB;
 
     let request = https.get(query, {json: true}, function(response){
         let jsonResponse = '';
