@@ -30,8 +30,8 @@ router.get('/banks', function(req, res) {
 
         var query = "http://localhost:8080/result?location=" + location;
 
-        var request = http.get(query, {json: true}, function(response){
-            var jsResponse = '';
+        let request = http.get(query, {json: true}, function(response){
+            let jsResponse = '';
             response.on('data', function(chunk) {
                 jsResponse += chunk;
             });
@@ -51,7 +51,7 @@ router.get('/banks', function(req, res) {
             res.render("result", {loc: location, data: dataResponse});
         });
 
-    }, 4000);
+    }, 2000);
 
 });
 
@@ -60,10 +60,10 @@ router.get('/result', function(req, res) {
     
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
-    var query = queryA + 'food+banks+near+' + location + queryB;
+    var query = queryA + 'food+banks+' + location + queryB;
 
-    var request = https.get(query, {json: true}, function(response){
-        var jsonResponse = '';
+    let request = https.get(query, {json: true}, function(response){
+        let jsonResponse = '';
         response.on('data', function(chunk) {
             jsonResponse += chunk;
         });
