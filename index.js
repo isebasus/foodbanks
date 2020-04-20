@@ -30,8 +30,8 @@ router.get('/banks', function(req, res) {
 
         var query = `http://${hostname}:${port}/result?location=` + location;
 
-        let request = http.get(query, {json: true}, function(response){
-            let jsResponse = '';
+        var request = http.get(query, {json: true}, function(request, response){
+            var jsResponse = '';
             response.on('data', function(chunk) {
                 jsResponse += chunk;
             });
@@ -63,8 +63,8 @@ router.get('/result', function(req, res) {
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+near+' + location + queryB;
 
-    let request = https.get(query, {json: true}, function(response){
-        let jsonResponse = '';
+    var request = https.get(query, {json: true}, function(request, response){
+        var jsonResponse = '';
         response.on('data', function(chunk) {
             jsonResponse += chunk;
         });
