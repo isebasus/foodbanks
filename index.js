@@ -47,12 +47,11 @@ router.get('/banks', function(req, res) {
         request.end();
 
         responseData.on('update', function(){
-
             var dataResponse = JSON.stringify(responseData.obj);
             res.render("result", {loc: location, data: dataResponse});
         });
 
-    }, 2000);
+    }, 2800);
 
 });
 

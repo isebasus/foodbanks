@@ -36,17 +36,19 @@
     }
 
     .row{
-        max-width: 90rem;
+
         margin-right: auto;
         margin-left: auto;
         display: flex;
         margin-bottom: 20px;
+        min-height: 100%;
+
     }
 
     .column{
         padding-right: .625rem;
         padding-left: .625rem;
-        width: 100%
+        width: 100%;
     }
 
     .textLeft{
@@ -61,7 +63,7 @@
         font-family: 'Roboto Mono', monospace;
         font-weight: 800;
         font-style: italic;
-        font-size: 3em;
+        font-size: 2em;
         margin-bottom: 0.5em;
         transition: 0.2s ease 0s;
         color: black;
@@ -218,7 +220,7 @@
             }   
 
             #title{
-                font-size: 3rem;
+                font-size: 1rem;
                 height: 135px;
             }
 
@@ -234,7 +236,7 @@
                 height: 160px;
             }
             .a{
-                font-size: 2em;
+                font-size: 1em;
             }
 
             input{
@@ -270,14 +272,9 @@
         
     </script>
     <body>
+       
+        
         <div id="container">
-            <h1 id="first">Food Banks</h1>
-            <h2 id="caption">👋 Hello there, enter your Zip Code to find food banks near you.</h2>
-            <form action="/banks" method="GET">
-                <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code">
-            </form>
-        </div>
-        <footer class="footer">
             <div class="row">
                 <div class="column textLeft">
                     <a class="a" href="https://isebas.us/">Isebas.us</a>
@@ -286,6 +283,11 @@
                     <a class="a" href="https://www.buymeacoffee.com/isebasus">buymeacoffee.com</a>
                 </div>
             </div>
-        </footer>
+            <h1 id="first">Food Banks</h1>
+            <h2 id="caption">👋 Hello there, enter your Zip Code to find food banks near you.</h2>
+            <form action="/banks" method="GET">
+                <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code">
+            </form>
+        </div>
     </body>
 </html>
