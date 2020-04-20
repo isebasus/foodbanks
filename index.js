@@ -28,7 +28,7 @@ router.get('/banks', function(req, res) {
     setTimeout(() => {
         var responseData = new EventEmitter();
 
-        var query = "http://66.42.109.77/result?location=" + location;
+        var query = "http://66.42.109.77:8080/result?location=" + location;
 
         let request = http.get(query, {json: true}, function(response){
             let jsResponse = '';
