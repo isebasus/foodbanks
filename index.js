@@ -5,7 +5,7 @@ const https = require('https');
 const http = require('http');
 const app = express();
 var EventEmitter = require('events').EventEmitter;
-const hostname = '66.42.109.77';
+const hostname = '127.0.0.1';
 const port = 8080;
 const router = express.Router();
 
@@ -42,7 +42,7 @@ router.get('/banks', function(req, res) {
             });
         });
         request.on('error', function(error) {
-            console.log("bad")
+            console.log(error)
         });
         request.end();
 
@@ -107,7 +107,7 @@ router.get('/result', function(req, res) {
         })
     });
     request.on('error', function(error) {
-        console.log("hello")
+        console.log(error)
     })
     request.end();
 
