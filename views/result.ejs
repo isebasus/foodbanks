@@ -173,8 +173,10 @@
 
             var increment = 0;
             for(var i = 0; i < locations.length; i++){
+              var name = JSON.stringify(locations[i].name);
+
+              if(name.indexOf('United States')){
                 var address = JSON.stringify(locations[i].address);
-                var name = JSON.stringify(locations[i].name);
                 var isOpen = locations[i].open;
                 var rating = JSON.stringify(locations[i].rating);
                 
@@ -189,6 +191,7 @@
                 }
                 $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div></div> ');
                 increment++; 
+              }
             }
 
             $(".location").click(function(){
@@ -233,23 +236,14 @@
         });
 
         function initMap() {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-
-                map.setCenter(pos);
-
-            });
-
             var locationsData = <%- data %>
+            var zipCode = <%- loc %>
 
             var specifics = JSON.stringify(locationsData);
             var dataLocations = JSON.parse(specifics);
 
-            // The location of Uluru
             var uluru = {lat: dataLocations[0].latitude, lng: dataLocations[0].longitude};
+
             // The map, centered at Uluru
             map = new google.maps.Map(
             document.getElementById('map'), {
@@ -490,15 +484,16 @@
             var int = 0;
             for(var i = 0; i < dataLocations.length; i++){
                 var locations = dataLocations[i];
-                var marker = new google.maps.Marker({
+                if(locations.name.indexOf('United States')){
+                  var marker = new google.maps.Marker({
                     position: {lat: locations.latitude, lng: locations.longitude},
                     icon: icon,
                     map: map,
                     id: 'marker_' + int,
-                });
-                markers.push(marker);
+                  });
+                  markers.push(marker);
 
-                google.maps.event.addListener(marker, 'click', (function(marker) {
+                  google.maps.event.addListener(marker, 'click', (function(marker) {
                     return function() {
                         var int = 0;
                         for(var i = 0; i < markers.length; i++){
@@ -515,11 +510,13 @@
                         map.setZoom(14);
                         map.panTo(marker.position);
                         marker.setIcon(bigicon);
-                    }
-                })(marker));
+                      }
+                  })(marker));
 
 
-                int++;
+                  int++;
+
+                }
             }
 
         }
