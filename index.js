@@ -57,10 +57,13 @@ router.get('/banks', function(req, res) {
 
 router.get('/result', function(req, res) {
     var location = req.query.location;
+
+    var parseLocation = location.substring(0, 2);
+    console.log(parseLocation);
     
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
-    var query = queryA + 'food+pantries+' + location + queryB;
+    var query = queryA + 'food+banks+' + location + queryB;
 
     let request = https.get(query, {json: true}, function(response){
         let jsonResponse = '';
@@ -82,25 +85,36 @@ router.get('/result', function(req, res) {
                 dataArr = result[i];
             }
 
+            var index = 0;
             for (var i = 0; i < dataArr.length; i++){
-                var open = [];
 
-                var object = {}
-                object["address"] = dataArr[i].formatted_address;
-                object["name"] = dataArr[i].name;
-                object["rating"] = dataArr[i].rating;
-                object['latitude'] = dataArr[i].geometry.location.lat;
-                object['longitude'] = dataArr[i].geometry.location.lng;
+                var types = dataArr[i].types;
+                var address = dataArr[i].formatted_address;
 
-                open.push(dataArr[i].opening_hours);
-                for(var z = 0; z < open.length; z++){
-                    try{
-                        object["open"] = open[0].open_now;
+                if(types.includes("atm") || types.includes("convenience_store") || types.includes("finance")){
+                    dataArr.splice(index, 1);
+                } else if (address.includes(parseLocation) && address.includes("United States")){
+                    var open = [];
+
+                    var object = {}
+                    object["address"] = address;
+                    object["name"] = dataArr[i].name;
+                    object["rating"] = dataArr[i].rating;
+                    object['latitude'] = dataArr[i].geometry.location.lat;
+                    object['longitude'] = dataArr[i].geometry.location.lng;
+    
+                    open.push(dataArr[i].opening_hours);
+                    for(var z = 0; z < open.length; z++){
+                        try{
+                            object["open"] = open[0].open_now;
+                        }
+                        catch (e) {object["open"] = "no information"}
                     }
-                    catch (e) {object["open"] = "no information"}
+    
+                    output.push(object);
                 }
 
-                output.push(object);
+                index++;
             }
             res.send(output);
         })

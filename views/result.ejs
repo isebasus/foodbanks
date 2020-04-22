@@ -63,6 +63,40 @@
         text-align: left;
     }
 
+    .overlay{
+      height: 60%;
+      width: 100%;
+      position: fixed;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      background-color: #f0f0f0;
+      overflow-x: hidden;
+      transition: 0.5s;
+      margin: 0 auto;
+      overflow-y: scroll;
+      padding: 0px 30px;
+      border-top: 3px solid rgb(0, 0, 0, 0.25);
+      display: none;
+    }
+
+    .body{
+        background-color: #f0f0f0;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        left: 0;
+        max-width: 430px;
+        margin: 0 auto;
+        padding: 0px 30px;
+        transition: 0.5s;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 100%;
+        display: block;
+    }
+
+
     .location{
         position: relative;
         background-color: #fff;
@@ -70,6 +104,7 @@
         padding: 1.5rem;
         transition: transform .15s; 
         cursor: pointer;
+        margin-bottom: 30px;
     }
 
     .cover{
@@ -102,34 +137,16 @@
         display: grid;
         grid-template-columns: 1fr;
         width: 100%;
-        grid-gap: 30px 30px;
-        gap: 30px 30px;
+        grid-gap: 0px 0px;
+        gap: 0px 0px;
     }
     div{
         display: block;
     }
 
-    .body{
-        background-color: #f0f0f0;
-        position: fixed;
-        z-index: 100;
-        top: 0;
-        left: 0;
-        width: 450px;
-        max-height: 100vh;
-        margin: 0 auto;
-        padding: 0px 30px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        height: 100%;
-    }
-
     p{
         color: #0f0f10;
-        width: 300px;
-        position: relative;
         font-weight: normal;
-        text-align: left;
     }
     #map {
         position: absolute; top: 0; right: 0; bottom: 0; left: 0;
@@ -139,26 +156,48 @@
         position: relative;
     }
 
-    @media only screen and (max-width: 470px){
+    @media only screen and (max-width: 846px){
         .body{
-            padding: 0px 15px;
-            margin-top: 350px;
-            border-top: 6px solid rgb(0, 0, 0, 0.25);
-            width: 100%;
+          width: 300px;
         }
 
+        h1{
+          font-size: 1.5em;
+        }
+
+        h2{
+          font-size: 1.15em;
+        }
+
+        p{
+          font-size: .7em;
+        }
+    }
+
+    @media only screen and (max-width: 470px){
+        .body{
+            width: 100%;
+            height: 60%;
+            border-top: 3px solid rgb(0, 0, 0, 0.25);
+        }
+
+        .location{
+          width: inherit;
+        }
+
+        ::-webkit-scrollbar-thumb {
+        border-radius: 1em;
+      }
+
         ::-webkit-scrollbar {
-        width: 3px
+        width: 5px;
         }
     }
 
     @media only screen and (max-width: 370px){
-        .body{
-            padding: 0px 5px;
-        }
 
         ::-webkit-scrollbar {
-        width: 2px
+        width: 5px;
         }
     }
 
@@ -175,7 +214,6 @@
             for(var i = 0; i < locations.length; i++){
               var name = JSON.stringify(locations[i].name);
 
-              if(name.indexOf('United States')){
                 var address = JSON.stringify(locations[i].address);
                 var isOpen = locations[i].open;
                 var rating = JSON.stringify(locations[i].rating);
@@ -191,7 +229,6 @@
                 }
                 $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div></div> ');
                 increment++; 
-              }
             }
 
             $(".location").click(function(){
@@ -484,7 +521,6 @@
             var int = 0;
             for(var i = 0; i < dataLocations.length; i++){
                 var locations = dataLocations[i];
-                if(locations.name.indexOf('United States')){
                   var marker = new google.maps.Marker({
                     position: {lat: locations.latitude, lng: locations.longitude},
                     icon: icon,
@@ -516,14 +552,13 @@
 
                   int++;
 
-                }
             }
 
         }
 
     </script>
     <body>
-        <div class="body">
+        <div id="nav" class="body">
             <h1><a> <%= loc %></a></h1>
             <div class="columns">
             </div>
