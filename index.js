@@ -59,7 +59,6 @@ router.get('/result', function(req, res) {
     var location = req.query.location;
 
     var parseLocation = location.substring(0, 2);
-    console.log(parseLocation);
     
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';

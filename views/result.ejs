@@ -8,7 +8,7 @@
         <title>Food Banks</title>
     </head>
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap');
 
 
     ::-webkit-scrollbar {
@@ -63,23 +63,6 @@
         text-align: left;
     }
 
-    .overlay{
-      height: 60%;
-      width: 100%;
-      position: fixed;
-      z-index: 1;
-      bottom: 0;
-      left: 0;
-      background-color: #f0f0f0;
-      overflow-x: hidden;
-      transition: 0.5s;
-      margin: 0 auto;
-      overflow-y: scroll;
-      padding: 0px 30px;
-      border-top: 3px solid rgb(0, 0, 0, 0.25);
-      display: none;
-    }
-
     .body{
         background-color: #f0f0f0;
         position: fixed;
@@ -89,7 +72,7 @@
         max-width: 430px;
         margin: 0 auto;
         padding: 0px 30px;
-        transition: 0.5s;
+        transition: 0.5s ease;
         overflow-y: scroll;
         overflow-x: hidden;
         height: 100%;
@@ -105,6 +88,20 @@
         transition: transform .15s; 
         cursor: pointer;
         margin-bottom: 30px;
+    }
+
+    .toggleButton{
+      padding: 3px 12px;
+      margin: 0 auto;
+      position: fixed;
+      z-index: 100;
+      right: 34px;
+      width: 50px;
+      background-color: #c9c9c9;
+      height: 30px;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+      display: none;
     }
 
     .cover{
@@ -178,7 +175,11 @@
         .body{
             width: 100%;
             height: 60%;
-            border-top: 3px solid rgb(0, 0, 0, 0.25);
+            border-top: 1px solid rgb(0, 0, 0, 0.25);
+        }
+
+        .toggleButton{
+          display: block;
         }
 
         .location{
@@ -206,10 +207,18 @@
         var map;
         var markers = [];
 
+        $(window).on('resize', function() {
+          if ($(this).width() >= 470) {
+            $(".body").css({"height": "100%"});
+          }
+          else if($(this).width() <= 470){
+            $(".body").css({"height": "60%"});
+          }
+        });
+
         $(document).ready(function(){
             var locations = <%- data %>
             
-
             var increment = 0;
             for(var i = 0; i < locations.length; i++){
               var name = JSON.stringify(locations[i].name);
@@ -230,6 +239,17 @@
                 $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div></div> ');
                 increment++; 
             }
+            var bool = true;
+            $(".toggleButton").click(function(){
+              if(bool){
+                $(".body").css({"height": "15%"});
+                $('.img').attr("src","https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-up-512.png");
+              }else{
+                $(".body").css({"height": "60%"});
+                $('.img').attr("src","https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-512.png");
+              }
+              bool = !bool;
+            });
 
             $(".location").click(function(){
                 
@@ -538,10 +558,17 @@
                             int++;
                         }
                         var objectId = marker.id.split('_')[1];
-                        $('.body').animate({
+
+                        if($(".body").height() == 120.8){
+                          $('.body').animate({
+                            scrollTop: $("#"+ objectId +"").offset().top - 800 + $(".body").scrollTop()},
+                          'slow');
+                        } else{
+                          $('.body').animate({
                             scrollTop: $("#"+ objectId +"").offset().top - 400 + $(".body").scrollTop()},
                         'slow');
-                        
+                        }
+
                         $("#name" + objectId + "").css({"text-decoration": "underline"});
                         map.setZoom(14);
                         map.panTo(marker.position);
@@ -559,6 +586,9 @@
     </script>
     <body>
         <div id="nav" class="body">
+            <div class="toggleButton">
+              <img class="img" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-512.png" width="25" height="25">
+            </div>
             <h1><a> <%= loc %></a></h1>
             <div class="columns">
             </div>
