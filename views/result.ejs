@@ -8,7 +8,8 @@
         <title>Food Banks</title>
     </head>
     <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700,800&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,900&display=swap');
 
 
     ::-webkit-scrollbar {
@@ -36,7 +37,6 @@
     * {
         color: white;
         font-family: 'Roboto Mono', monospace;
-        font-weight: 700;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         box-sizing: border-box;
@@ -51,7 +51,7 @@
         color: white;    
         }
     h1{
-        font-weight: 500;
+        font-weight: 700;
     }
 
     a{
@@ -72,7 +72,7 @@
         max-width: 430px;
         margin: 0 auto;
         padding: 0px 30px;
-        transition: 0.5s ease;
+        transition: 0.2s ease;
         overflow-y: scroll;
         overflow-x: hidden;
         height: 100%;
@@ -130,6 +130,11 @@
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
     }
 
+    .website{
+      color: rgba(0, 0, 0, 0.8);
+      text-decoration: underline;
+    }
+
     .columns{
         display: grid;
         grid-template-columns: 1fr;
@@ -144,9 +149,11 @@
     p{
         color: #0f0f10;
         font-weight: normal;
+        cursor: auto;
     }
     #map {
         position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+        transition: 0.2s ease;
       }
     
     .continer{
@@ -186,6 +193,10 @@
           width: inherit;
         }
 
+        #map{
+          height: 50%;
+        }
+
         ::-webkit-scrollbar-thumb {
         border-radius: 1em;
       }
@@ -210,9 +221,11 @@
         $(window).on('resize', function() {
           if ($(this).width() >= 470) {
             $(".body").css({"height": "100%"});
+            $("#map").css({"height": "100%"});
           }
           else if($(this).width() <= 470){
             $(".body").css({"height": "60%"});
+            $("#map").css({"height": "50%"});
           }
         });
 
@@ -221,31 +234,42 @@
             
             var increment = 0;
             for(var i = 0; i < locations.length; i++){
-              var name = JSON.stringify(locations[i].name);
 
+                var phone = locations[i].phoneNumber;
+                var website = JSON.stringify(locations[i].website);
+                var name = JSON.stringify(locations[i].name);
                 var address = JSON.stringify(locations[i].address);
+                var type = locations[i].type;
                 var isOpen = locations[i].open;
                 var rating = JSON.stringify(locations[i].rating);
-                
                 var open = ""
                 if(isOpen){
-                    open = "Open ✔️"
+                    open = "✔️ Open"
                 } else if (isOpen == false){
-                    open = "Closed ❌"
+                    open = "❌ Closed"
                 }
                 else{
                     open = ""
                 }
-                $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + '</h2><p>' + address + '</p><p>' + rating  + ' ⭐</p><p>' + open + '</p></div></div> ');
+                if(type.includes("church")){ name = "⛪ " + name; }
+
+                if(website == null){
+                  $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + ' </h2><p>' + address + '</p><p>📞 ' + phone + '</p><p>' + open + '</p></div></div> ');
+                } else {
+                  $(".columns").append('<div class="location" id="' + increment + '"><div class="cover"><h2 id="name'+ increment + '">' + name + ' </h2><p>' + address + '</p><p>📞 ' + phone + '</p><p>' + open + '</p><p>🌐 <a class="website" href=' + website + '>Website</a></p></div></div> ');
+                }
+
                 increment++; 
             }
             var bool = true;
             $(".toggleButton").click(function(){
               if(bool){
                 $(".body").css({"height": "15%"});
+                $("#map").css({"height": "100%"});
                 $('.img').attr("src","https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-up-512.png");
               }else{
                 $(".body").css({"height": "60%"});
+                $("#map").css({"height": "50%"});
                 $('.img').attr("src","https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-512.png");
               }
               bool = !bool;
@@ -279,8 +303,8 @@
                     var num = idNumber.toString();
                     if($(this).attr("id") == num){
                         if(markers[idNumber].id == "marker_" + idNumber){
-                            map.setZoom(14);
                             map.panTo(markers[idNumber].position);
+                            map.setZoom(14);
                             markers[idNumber].setIcon(bigicon);
                             $("#name" + idNumber + "").css({"text-decoration": "underline"});
                         }
@@ -301,16 +325,14 @@
 
             var uluru = {lat: dataLocations[0].latitude, lng: dataLocations[0].longitude};
 
-            // The map, centered at Uluru
-            map = new google.maps.Map(
-            document.getElementById('map'), {
-                zoom: 13, 
-                center: uluru,
-                disableDefaultUI: true,
-                gestureHandling: 'greedy',
-                minZoom: 5,
-                zoomControl: true,
-                styles: [
+            var elementStyle = {
+              zoom: 13, 
+              center: uluru,
+              disableDefaultUI: true,
+              gestureHandling: 'greedy',
+              minZoom: 5,
+              zoomControl: true,
+              styles: [
                 {
     "elementType": "geometry",
     "stylers": [
@@ -523,7 +545,20 @@
   }
 
                         ]
-            });
+            }
+
+          if ($(this).width() >= 470) {
+            elementStyle.zoomControl = !elementStyle.zoomControl;
+          }
+          else if($(this).width() <= 470){
+            elementStyle.zoomControl = !elementStyle.zoomControl;
+          }
+
+          alert(elementStyle.zoomControl);
+
+            // The map, centered at Uluru
+            map = new google.maps.Map( document.getElementById('map'), elementStyle);
+          
             var icon = {
                 url: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/round-pushpin_1f4cd.png", // url
                 scaledSize: new google.maps.Size(30, 30), // scaled size
@@ -559,7 +594,7 @@
                         }
                         var objectId = marker.id.split('_')[1];
 
-                        if($(".body").height() == 120.8){
+                        if($(".body").height() <= 180){
                           $('.body').animate({
                             scrollTop: $("#"+ objectId +"").offset().top - 800 + $(".body").scrollTop()},
                           'slow');
@@ -570,15 +605,12 @@
                         }
 
                         $("#name" + objectId + "").css({"text-decoration": "underline"});
-                        map.setZoom(14);
                         map.panTo(marker.position);
                         marker.setIcon(bigicon);
+                        map.setZoom(14);
                       }
                   })(marker));
-
-
                   int++;
-
             }
 
         }
@@ -589,7 +621,7 @@
             <div class="toggleButton">
               <img class="img" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-down-512.png" width="25" height="25">
             </div>
-            <h1><a> <%= loc %></a></h1>
+            <h1><a><%= loc %></a></h1>
             <div class="columns">
             </div>
         </div>
