@@ -548,14 +548,11 @@
             }
 
           if ($(this).width() >= 470) {
-            elementStyle.zoomControl = !elementStyle.zoomControl;
+            elementStyle.zoomControl = elementStyle.zoomControl;
           }
           else if($(this).width() <= 470){
             elementStyle.zoomControl = !elementStyle.zoomControl;
           }
-
-          alert(elementStyle.zoomControl);
-
             // The map, centered at Uluru
             map = new google.maps.Map( document.getElementById('map'), elementStyle);
           
