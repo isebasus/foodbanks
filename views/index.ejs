@@ -26,13 +26,12 @@
     }
     
     body{
-        width: 100%;
         height: 100vh;
         background-color: #fff;
         font-family: 'Roboto Mono', monospace;
         -webkit-font-smoothing: subpixel-antialiased;
         text-rendering: optimizeLegibility;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .row{
@@ -69,6 +68,11 @@
         color: black;
     }
 
+    .coffee{
+        text-decoration: none;
+        font-style: normal;
+    }
+
     a{
         cursor: pointer;
     }
@@ -80,10 +84,10 @@
         border: 0px;
         padding: 1em 2em;
         font-weight: 700;
+        font-size: 2em; 
         user-select: none;
         text-decoration: none;
         cursor: pointer;
-        letter-spacing: 0.2vw;
         font-family: 'Roboto Mono', monospace;
         transition: .1s ease; 
     
@@ -97,13 +101,14 @@
     input{
         color: black;
         background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
+        border-radius: 100px;
         border: none;
-        padding: 10px;
+        font-size: 1.3em; 
+        padding: 1.2rem;
         caret-color: #535353;
         outline: none;
         display: inline-block;
-        width: 400px;
+        width: 60%;
         position: relative;
         display: block;
         margin: 0 auto;
@@ -168,44 +173,23 @@
     color: #0f0f10;  
 }
 
-#headline {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 500;
-    color: #9D9D9D;
-    font-size: 24px;
-    text-align: center;
-    padding:30px 0px 0px 0px;
-    margin: 0px 0px 50px 0px;
-    animation: fade_in 1s ease-in forwards;
-    animation-delay: 0.5s;
-    visibility: hidden;
-    user-select: none;
-}
-#r {
-    display: inline-block;
-    width: 400px;
-    padding: 15px;
-    background-color: #303030;
-    -webkit-appearance: none;
-    border: none;
-    font-size: 20px;
-    font-family: "Roboto Mono", monospace;
-    font-weight: 500;
-    color: #c0c0c0;
-    margin: 0 auto;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 11px;
-    animation: fade_up 2s ease-in forwards;
-    animation-delay: 0.3s;
-    caret-color: #535353;
-    visibility: hidden;
-}
-#r::placeholder {
-    color: #777777;
-}
-#form {
-    position: relative;
-}
+    #headline {
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 500;
+        color: #9D9D9D;
+        font-size: 24px;
+        text-align: center;
+        padding:30px 0px 0px 0px;
+        margin: 0px 0px 50px 0px;
+        animation: fade_in 1s ease-in forwards;
+        animation-delay: 0.5s;
+        visibility: hidden;
+        user-select: none;
+    }
+
+    #form {
+        position: relative;
+    }
 
         @media only screen and (max-width: 995px){
             #first{
@@ -227,48 +211,63 @@
 
             #caption{
                 font-size: 1.8rem;
+                margin-bottom: 25px;
             }
+            
+            input{
+                font-size: 1em;
+                padding: 0.9rem;
+            }
+
         }
 
         @media only screen and (max-width: 577px){
             #first{
-                height: 140px;
-                font-size: 2.5rem;
+                height: 130px;
+                font-size: 2.7rem;
                 text-align: center;
             }
             .a{
-                font-size: 1em;
+                font-size: 1.3em;
+            }
+
+            #container{
+                padding: 20px 15px;
             }
 
             #caption{
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             input{
-                width: 300px;
+                font-size: 0.8em;
+                padding: 0.7rem;
             }
+        }
+
+        @media only screen and (max-width: 500px){
+            .a{
+                font-size: 1.05em;
+            }
+
         }
 
         @media only screen and (max-width: 396px){
             
-            input{
-                width: 200px;
-            }
             #first{
                 height: 130px;
             }
         }
     </style>
     <body>
-       
         
         <div id="container">
             <div class="row">
                 <div class="column textLeft">
-                    <a class="a" href="https://isebas.us/">isebas.us</a>
+                    <a class="a" href="https://isebas.us/">Food Banks</a>
                 </div>
                 <div class="column textRight">
-                    <a class="a" href="https://www.buymeacoffee.com/isebasus">buymeacoffee.com</a>
+                    <a class="a" href="https://www.buymeacoffee.com/isebasus"><i class="coffee">☕</i>buymeacoffee</a>
                 </div>
             </div>
             <h1 id="first">Food Banks</h1>
