@@ -64,6 +64,7 @@
         font-weight: 800;
         font-style: italic;
         font-size: 1.5em;
+        text-decoration: none;
         margin-bottom: 0.5em;
         transition: 0.2s ease 0s;
         color: #0f0f10;
@@ -71,7 +72,7 @@
     }
 
     .about{
-        background-color: rgba(255, 91, 91, 0.1);
+        background-color: rgba(0, 0, 0, 0.1);
         position: absolute;
         left: 0;
         width: 100%;
@@ -114,7 +115,9 @@
 
     .food{
         font-style: normal;
-        color: #ff5b5b;
+        color: #333333;
+        font-weight: 700;
+       
     }
 
     input{
@@ -127,7 +130,7 @@
         caret-color: #535353;
         outline: none;
         display: inline-block;
-        width: 70%;
+        width: 80%;
         position: relative;
         display: block;
         margin: 0 auto;
@@ -156,13 +159,33 @@
         border: 0;
         vertical-align: baseline;
     }
+    
+    .image{
+        transition: opacity .2s;
+        width: 100%;
+        padding-bottom: 60%;
+        background-size: cover;
+        background-image: url('https://i.ibb.co/zZ3zyJy/foodbanks-B.jpg');
+
+    }
 
     #container {
-        max-width: 1100px;
+        max-width: 980px;
         margin: 0px auto;
         padding: 40px 15px;
         background-size: cover;
-        margin-bottom: 8%;
+        margin-bottom: 6%;
+    }
+
+    .parent{
+        border-radius: 4px;
+        background-size: cover;
+        background-repeat: none;
+    }
+
+    .project{
+        position: relative;
+        overflow: hidden;
     }
 
 #first{
@@ -180,6 +203,15 @@
     color:  #0f0f10;  
 }
 
+.columns{
+    display: grid;
+    grid-template-columns: repeat(1fr);
+    width: 90%;
+    margin: 0px auto;
+}
+
+
+
 .love{
     font-size: 0.8rem;
     font-weight: 400;
@@ -194,7 +226,7 @@
     font-weight: 400;
     text-align: center;
     font-weight: 400;
-    margin-top: -80px; 
+    margin-top: -100px; 
     color: #333333;
 }
 
@@ -304,11 +336,17 @@
             <form action="/banks" method="GET">
                 <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code">
             </form>
-            <p class="love">Made with 💖 by a senior in highschool.</p>
+            <p class="love">Made with ❤️ by a student in highschool.</p>
         </div>
         <div class="about">
             <div id="container">
-               
+               <div class="columns">
+                   <div class="parent">
+                        <div class="project">
+                            <div class="image"></div>
+                        </div>
+                   </div>
+               </div>
             </div>
         </div>
     </body>
