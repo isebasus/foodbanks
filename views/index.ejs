@@ -35,9 +35,9 @@
     }
 
     .row{
-
         margin-right: auto;
         margin-left: auto;
+        margin-top: -20px;
         display: flex;
         margin-bottom: 20px;
         min-height: 100%;
@@ -61,8 +61,7 @@
 
     .a{
         font-family: 'Roboto Mono', monospace;
-        font-weight: 800;
-        font-style: italic;
+        font-weight: 700;
         font-size: 1.5em;
         text-decoration: none;
         margin-bottom: 0.5em;
@@ -71,12 +70,18 @@
         
     }
 
+    #right{
+        font-weight: 400;
+        font-size: 1em;
+        color:rgba(0, 0, 0, 0.5);
+        padding-right: 10px;
+    }
+
     .about{
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color:#f0f0f0;
         position: absolute;
         left: 0;
         width: 100%;
-        height: 100%
     }
 
     .coffee{
@@ -89,19 +94,27 @@
     }
  
     input[type=submit]{
-        background-color: rgba(0, 0, 0, 0.1);
-        color: #141414;
-        border-radius: 5px;
+        background-color: #333333;
+        color: #fff;
+        border-bottom-right-radius: 100px;
+        border-top-right-radius: 100px;
         border: 0px;
-        padding: 1em 2em;
-        font-weight: 700;
-        font-size: 2em; 
+        padding: 1.2rem;
+        font-weight: 400;
+        font-size: 1.3em; 
         user-select: none;
+        width: 15%;
+        outline: none;
         text-decoration: none;
         cursor: pointer;
         font-family: 'Roboto Mono', monospace;
-        transition: .1s ease; 
-    
+        transition: .2s ease; 
+        margin: 0 auto;
+    }
+
+     
+    input[type=submit]:hover{
+        background-color: rgba(0, 0, 0, 1);
     }
 
     .wave{
@@ -120,26 +133,19 @@
        
     }
 
-    input{
+    input[type="text"]{
         color: black;
         background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 100px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
         border: none;
         font-size: 1.3em; 
+        font-weight: 400;
         padding: 1.2rem;
         caret-color: #535353;
         outline: none;
-        display: inline-block;
-        width: 80%;
-        position: relative;
-        display: block;
         margin: 0 auto;
-    }
-
-    input[type=submit]:hover{
-        -webkit-transform: scale(1.015);
-        -ms-transform: scale(1.015);
-        transform: scale(1.015);
+        width: 50%;
     }
 
     .footer{
@@ -170,11 +176,11 @@
     }
 
     #container {
-        max-width: 980px;
+        max-width: 1080px;
         margin: 0px auto;
         padding: 40px 15px;
         background-size: cover;
-        margin-bottom: 6%;
+        margin-bottom: 5.5%;
     }
 
     .parent{
@@ -186,6 +192,14 @@
     .project{
         position: relative;
         overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .feature{
+        color: #0f0f10;
+        font-weight: 700;
+        font-size: 1.7em;
+        margin-bottom: -5px;
     }
 
 #first{
@@ -203,14 +217,35 @@
     color:  #0f0f10;  
 }
 
-.columns{
-    display: grid;
-    grid-template-columns: repeat(1fr);
-    width: 90%;
-    margin: 0px auto;
+#more-about{
+    font-weight: 400;
+    text-align: center;
+    padding-top: 60px;
+    font-size: 1.5rem;
+    -webkit-background-clip: text;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color:  #0f0f10;  
 }
 
+.description{
+    color:  #0f0f10; 
+    font-size: 1.1em;
+    font-weight: 400;
+}
 
+.columns{
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px 25px;
+    gap: 25px 50px;
+    width: 100%;
+    margin-bottom: 0;
+    margin: 0px auto;
+}
 
 .love{
     font-size: 0.8rem;
@@ -220,6 +255,11 @@
     color: #0f0f10;
 }
 
+.search{
+    display: block; 
+    text-align: center;
+}
+
 #caption{
     font-size: 3rem;
     margin-bottom: 40px;
@@ -227,7 +267,7 @@
     text-align: center;
     font-weight: 400;
     margin-top: -100px; 
-    color: #333333;
+    color: rgba(51, 51, 51, 0.9);
 }
 
     #headline {
@@ -251,15 +291,45 @@
         @media only screen and (max-width: 995px){
             #first{
                 height: 160px;
-
+            }
+            .columns{
+                width: 90%;
             }
         }
+
+        @media only screen and (max-width: 850px){
+            .columns{
+                grid-template-columns: repeat(1, 1fr);
+                width: 70%;
+            }
+        }
+
 
         @media only screen and (max-width: 770px){
             #first{
                 font-size: 3.6rem;
                 height: 140px;
             }   
+
+            
+            input[type="text"]{
+                position: relative;
+                display: block;
+                border-radius: 50px;
+                width: 70%;
+                font-size: 1.1em;
+                padding: 1.2rem;
+            }
+
+            input[type="submit"]{
+                margin-top: 20px;
+                position: relative;
+                display: block;
+                border-radius: 50px;
+                padding: 0.8rem; 
+                width: 70%;
+                font-size: 1.1em;
+            }
 
             #title{
                 font-size: 1rem;
@@ -278,14 +348,15 @@
 
             .love{
                 font-size: 0.7rem;
+                margin-top: 20px;
             }
 
         }
 
         @media only screen and (max-width: 577px){
             #first{
-                height: 130px;
-                font-size: 2.7rem;
+                height: 140px;
+                font-size: 3.6rem;
                 text-align: center;
                 padding-top: 30px;
             }
@@ -293,12 +364,20 @@
                 font-size: 1.3em;
             }
 
+            input[type="text"]{
+                width: 80%;
+            }
+
+            input[type="submit"]{
+                width: 80%;
+            }
+
             #container{
                 padding: 20px 15px;
             }
 
             #caption{
-                font-size: 1.2rem;
+                font-size: 1.8rem;
             }
 
             input{
@@ -315,37 +394,58 @@
         }
 
         @media only screen and (max-width: 396px){
-            
             #first{
-                height: 130px;
+                height: 195px;
             }
+        }
+
+        @media only screen and (max-width: 330px){
+            
+          
         }
     </style>
     <body>
         <div id="container">
             <div class="row">
                 <div class="column textLeft">
-                    <a class="a" href="https://isebas.us/">Food Banks</a>
+                    <a class="a" href="https://isebas.us/">FoodBanks</a>
                 </div>
                 <div class="column textRight">
-                    <a class="a" href="https://www.buymeacoffee.com/isebasus"><i class="coffee">☕</i>buymeacoffee</a>
+                    <a class="a" id="right" href="https://www.buymeacoffee.com/isebasus">Contact</a>
+                    <a class="a" id="right" href="https://www.buymeacoffee.com/isebasus">About</a>
+               
                 </div>
             </div>
             <h1 id="first">Food Banks</h1>
             <h2 id="caption">Locate <i class="food">food banks</i> near you by simply entering a <i class="food">zip code</i>. <i class="wave">👌</i></h2>
-            <form action="/banks" method="GET">
-                <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code">
-            </form>
-            <p class="love">Made with ❤️ by a student in highschool.</p>
+            <div class="search">
+                <form action="/banks" method="GET">
+                    <input name="location" type="text" class="d1" id="c1" placeholder="Enter your Zip Code"><input type="submit" value="Search">
+                </form>
+            </div>
+            <p class="love">Made with 💖 by a student in highschool.</p>
         </div>
         <div class="about">
-            <div id="container">
+            <div id="container" class="b">
                <div class="columns">
                    <div class="parent">
                         <div class="project">
-                            <div class="image"></div>
+                            <h2 class="feature">📍 Find food banks</h2>
+                            <p class="description">Find and locate the closest food bank near you by entering your zip code.</p>
                         </div>
                    </div>
+                   <div class="parent">
+                        <div class="project">
+                            <h2 class="feature">📋 Get details</h2>
+                            <p class="description">Get the details by determining the phone number and website of each food bank.</p>
+                        </div>
+                    </div>
+                    <div class="parent">
+                        <div class="project">
+                            <h2 class="feature">✂️ Compare banks</h2>
+                            <p class="description">Check and compare which food banks are open and closest to you.</p>
+                        </div>
+                    </div>
                </div>
             </div>
         </div>

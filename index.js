@@ -51,7 +51,7 @@ router.get('/banks', function(req, res) {
             res.render("result", {loc: location, data: dataResponse});
         });
 
-    }, 3000);
+    }, 1000);
 
 });
 
