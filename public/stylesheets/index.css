@@ -89,6 +89,11 @@ a{
     color:  rgba(15, 15, 16, 0.5); 
 }
 
+.color{
+    color: #0f0f10;
+    font-weight: 400;
+}
+
 input[type=submit]{
     background-color: rgba(255, 91, 91, 0.9);
     color: #fff;
@@ -106,6 +111,7 @@ input[type=submit]{
     font-family: 'Roboto Mono', monospace;
     transition: .2s ease; 
     margin: 0 auto;
+    -webkit-appearance: none;
 }
 
  
@@ -124,7 +130,7 @@ div{
 
 .food{
     font-style: normal;
-    color:  rgba(255, 91, 91, 0.9);
+    color:  rgba(255, 91, 91, 1);
     font-weight: 500;
    
 }
