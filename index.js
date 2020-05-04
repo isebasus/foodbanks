@@ -14,6 +14,8 @@ app.set('view engine', 'ejs');
 
 app.set("views", __dirname+"/views");
 
+app.use(express.static(path.join(__dirname, '/public')));
+
 if (app.get('env') === 'development') {
     app.locals.pretty = true;
 }
@@ -58,7 +60,7 @@ router.get('/banks', function(req, res) {
 router.get('/result', function(req, res) {
     var location = req.query.location;
     var parseLocation = location.substring(0, 2);
-    
+
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
     queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
@@ -159,6 +161,10 @@ router.get('/result', function(req, res) {
         console.log(error)
     })
     request.end();
+
+    function hasNumber(searchQuery){
+        return /\d/.test(searchQuery);
+    }
 
 });
 

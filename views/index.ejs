@@ -5,418 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/shopping-bags_1f6cd.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
         <title>Food Banks</title>
     </head>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700,800&display=swap');
-    * {
-        color: white;
-        font-family: 'Roboto Mono', monospace;
-        font-weight: 500;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    ::selection {
-        background: #ffb1b1
-    }
-
-    ::-moz-selection {
-        background: #ffb1b1
-    }
-    
-    body{
-        height: 100vh;
-        background-color: #fff;
-        font-family: 'Roboto Mono', monospace;
-        -webkit-font-smoothing: subpixel-antialiased;
-        text-rendering: optimizeLegibility;
-        overflow-x: hidden;
-    }
-
-    .row{
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: -20px;
-        display: flex;
-        margin-bottom: 20px;
-        min-height: 100%;
-
-    }
-
-    .column{
-        padding-right: .625rem;
-        padding-left: .625rem;
-        width: 100%;
-    }
-
-    .textLeft{
-        text-align: left;
-    }
-
-    .textRight{
-        text-align: right;
-    }
-
-
-    .a{
-        font-family: 'Roboto Mono', monospace;
-        font-weight: 700;
-        font-size: 1.5em;
-        text-decoration: none;
-        margin-bottom: 0.5em;
-        transition: 0.2s ease 0s;
-        color: #0f0f10;
-        
-    }
-
-    #right{
-        font-weight: 400;
-        font-size: 1em;
-        color:rgba(0, 0, 0, 0.5);
-        padding-right: 10px;
-    }
-
-    .about{
-        background-color:#f0f0f0;
-        position: absolute;
-        left: 0;
-        width: 100%;
-    }
-
-    .coffee{
-        text-decoration: none;
-        font-style: normal;
-    }
-
-    a{
-        cursor: pointer;
-    }
- 
-    input[type=submit]{
-        background-color: #333333;
-        color: #fff;
-        border-bottom-right-radius: 100px;
-        border-top-right-radius: 100px;
-        border: 0px;
-        padding: 1.2rem;
-        font-weight: 400;
-        font-size: 1.3em; 
-        user-select: none;
-        width: 15%;
-        outline: none;
-        text-decoration: none;
-        cursor: pointer;
-        font-family: 'Roboto Mono', monospace;
-        transition: .2s ease; 
-        margin: 0 auto;
-    }
-
-     
-    input[type=submit]:hover{
-        background-color: rgba(0, 0, 0, 1);
-    }
-
-    .wave{
-        font-style: normal;
-        opacity: 1;
-    }
-    
-    div{
-        display: block;
-    }
-
-    .food{
-        font-style: normal;
-        color: #333333;
-        font-weight: 700;
-       
-    }
-
-    input[type="text"]{
-        color: black;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-top-left-radius: 100px;
-        border-bottom-left-radius: 100px;
-        border: none;
-        font-size: 1.3em; 
-        font-weight: 400;
-        padding: 1.2rem;
-        caret-color: #535353;
-        outline: none;
-        margin: 0 auto;
-        width: 50%;
-    }
-
-    .footer{
-        display: block;
-        position: absolute;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        text-align: center;
-        color: rgba(0, 0, 0, 0.1);
-        font-size: 0.6em;
-        z-index: 1;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        vertical-align: baseline;
-    }
-    
-    .image{
-        transition: opacity .2s;
-        width: 100%;
-        padding-bottom: 60%;
-        background-size: cover;
-        background-image: url('https://i.ibb.co/zZ3zyJy/foodbanks-B.jpg');
-
-    }
-
-    #container {
-        max-width: 1080px;
-        margin: 0px auto;
-        padding: 40px 15px;
-        background-size: cover;
-        margin-bottom: 5.5%;
-    }
-
-    .parent{
-        border-radius: 4px;
-        background-size: cover;
-        background-repeat: none;
-    }
-
-    .project{
-        position: relative;
-        overflow: hidden;
-        border-radius: 5px;
-    }
-
-    .feature{
-        color: #0f0f10;
-        font-weight: 700;
-        font-size: 1.7em;
-        margin-bottom: -5px;
-    }
-
-#first{
-    padding-top: 30px;
-    font-weight: 900;
-    line-height: 1;
-    text-align: center;
-    font-size: 6.4rem;
-    height: 150px;
-    -webkit-background-clip: text;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    color:  #0f0f10;  
-}
-
-#more-about{
-    font-weight: 400;
-    text-align: center;
-    padding-top: 60px;
-    font-size: 1.5rem;
-    -webkit-background-clip: text;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    color:  #0f0f10;  
-}
-
-.description{
-    color:  #0f0f10; 
-    font-size: 1.1em;
-    font-weight: 400;
-}
-
-.columns{
-    padding-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 25px 25px;
-    gap: 25px 50px;
-    width: 100%;
-    margin-bottom: 0;
-    margin: 0px auto;
-}
-
-.love{
-    font-size: 0.8rem;
-    font-weight: 400;
-    text-align: center;
-    margin-top: 10px; 
-    color: #0f0f10;
-}
-
-.search{
-    display: block; 
-    text-align: center;
-}
-
-#caption{
-    font-size: 3rem;
-    margin-bottom: 40px;
-    font-weight: 400;
-    text-align: center;
-    font-weight: 400;
-    margin-top: -100px; 
-    color: rgba(51, 51, 51, 0.9);
-}
-
-    #headline {
-        font-family: 'Roboto Mono', monospace;
-        font-weight: 500;
-        color: #9D9D9D;
-        font-size: 24px;
-        text-align: center;
-        padding:30px 0px 0px 0px;
-        margin: 0px 0px 50px 0px;
-        animation: fade_in 1s ease-in forwards;
-        animation-delay: 0.5s;
-        visibility: hidden;
-        user-select: none;
-    }
-
-    #form {
-        position: relative;
-    }
-
-        @media only screen and (max-width: 995px){
-            #first{
-                height: 160px;
-            }
-            .columns{
-                width: 90%;
-            }
-        }
-
-        @media only screen and (max-width: 850px){
-            .columns{
-                grid-template-columns: repeat(1, 1fr);
-                width: 70%;
-            }
-        }
-
-
-        @media only screen and (max-width: 770px){
-            #first{
-                font-size: 3.6rem;
-                height: 140px;
-            }   
-
-            
-            input[type="text"]{
-                position: relative;
-                display: block;
-                border-radius: 50px;
-                width: 70%;
-                font-size: 1.1em;
-                padding: 1.2rem;
-            }
-
-            input[type="submit"]{
-                margin-top: 20px;
-                position: relative;
-                display: block;
-                border-radius: 50px;
-                padding: 0.8rem; 
-                width: 70%;
-                font-size: 1.1em;
-            }
-
-            #title{
-                font-size: 1rem;
-                height: 135px;
-            }
-
-            #caption{
-                font-size: 1.8rem;
-                margin-bottom: 25px;
-            }
-            
-            input{
-                font-size: 1em;
-                padding: 0.9rem;
-            }
-
-            .love{
-                font-size: 0.7rem;
-                margin-top: 20px;
-            }
-
-        }
-
-        @media only screen and (max-width: 577px){
-            #first{
-                height: 140px;
-                font-size: 3.6rem;
-                text-align: center;
-                padding-top: 30px;
-            }
-            .a{
-                font-size: 1.3em;
-            }
-
-            input[type="text"]{
-                width: 80%;
-            }
-
-            input[type="submit"]{
-                width: 80%;
-            }
-
-            #container{
-                padding: 20px 15px;
-            }
-
-            #caption{
-                font-size: 1.8rem;
-            }
-
-            input{
-                font-size: 0.8em;
-                padding: 0.7rem;
-            }
-        }
-
-        @media only screen and (max-width: 500px){
-            .a{
-                font-size: 1.05em;
-            }
-
-        }
-
-        @media only screen and (max-width: 396px){
-            #first{
-                height: 195px;
-            }
-        }
-
-        @media only screen and (max-width: 330px){
-            
-          
-        }
-    </style>
     <body>
         <div id="container">
             <div class="row">
                 <div class="column textLeft">
-                    <a class="a" href="https://isebas.us/">FoodBanks</a>
+                    <a class="a" href="https://isebas.us/"><img class="food-banks-logo" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDQ2Ljg0MyA0NDYuODQzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NDYuODQzIDQ0Ni44NDM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNNDQ0LjA5LDkzLjEwM2MtMi42OTgtMy42OTktNy4wMDYtNS44ODgtMTEuNTg0LTUuODg4SDEwOS45MmMtMC42MjUsMC0xLjI0OSwwLjAzOC0xLjg1LDAuMTE5bC0xMy4yNzYtMzguMjcgICBjLTEuMzc2LTMuOTU4LTQuNDA2LTcuMTEzLTguMy04LjY0NkwxOS41ODYsMTQuMTM0Yy03LjM3NC0yLjg4Ny0xNS42OTUsMC43MzUtMTguNTkxLDguMWMtMi44OTEsNy4zNjksMC43MywxNS42OTUsOC4xLDE4LjU5MSAgIGw2MC43NjgsMjMuODcybDc0LjM4MSwyMTQuMzk5Yy0zLjI4MywxLjE0NC02LjA2NSwzLjY2My03LjMzMiw3LjE4N2wtMjEuNTA2LDU5LjczOWMtMS4zMTgsMy42NjMtMC43NzUsNy43MzMsMS40NjgsMTAuOTE2ICAgYzIuMjQsMy4xODMsNS44ODMsNS4wNzgsOS43NzMsNS4wNzhoMTEuMDQ0Yy02Ljg0NCw3LjYxNi0xMS4wNDQsMTcuNjQ2LTExLjA0NCwyOC42NzVjMCwyMy43MTgsMTkuMjk4LDQzLjAxMiw0My4wMTIsNDMuMDEyICAgczQzLjAxMi0xOS4yOTQsNDMuMDEyLTQzLjAxMmMwLTExLjAyOS00LjItMjEuMDU5LTExLjA0NC0yOC42NzVoOTMuNzc2Yy02Ljg0Nyw3LjYxNi0xMS4wNDgsMTcuNjQ2LTExLjA0OCwyOC42NzUgICBjMCwyMy43MTgsMTkuMjk0LDQzLjAxMiw0My4wMTMsNDMuMDEyYzIzLjcxOCwwLDQzLjAxMi0xOS4yOTQsNDMuMDEyLTQzLjAxMmMwLTExLjAyOS00LjItMjEuMDU5LTExLjA0My0yOC42NzVoMTMuNDMzICAgYzYuNTk5LDAsMTEuOTQ3LTUuMzQ5LDExLjk0Ny0xMS45NDhjMC02LjU5OS01LjM0OS0xMS45NDctMTEuOTQ3LTExLjk0N0gxNDMuNjQ3bDEzLjMxOS0zNi45OTYgICBjMS43MiwwLjcyNCwzLjU3OCwxLjE1Miw1LjUyMywxLjE1MmgyMTAuMjc4YzYuMjM0LDAsMTEuNzUxLTQuMDI3LDEzLjY1LTkuOTU5bDU5LjczOS0xODYuMzg3ICAgQzQ0Ny41NTcsMTAxLjU2Nyw0NDYuNzg4LDk2LjgwMiw0NDQuMDksOTMuMTAzeiBNMTY5LjY1OSw0MDkuODA3Yy0xMC41NDMsMC0xOS4xMTYtOC41NzMtMTkuMTE2LTE5LjExNiAgIHM4LjU3My0xOS4xMTcsMTkuMTE2LTE5LjExN3MxOS4xMTYsOC41NzQsMTkuMTE2LDE5LjExN1MxODAuMjAyLDQwOS44MDcsMTY5LjY1OSw0MDkuODA3eiBNMzI3LjM2Nyw0MDkuODA3ICAgYy0xMC41NDMsMC0xOS4xMTctOC41NzMtMTkuMTE3LTE5LjExNnM4LjU3NC0xOS4xMTcsMTkuMTE3LTE5LjExN2MxMC41NDIsMCwxOS4xMTYsOC41NzQsMTkuMTE2LDE5LjExNyAgIFMzMzcuOTA5LDQwOS44MDcsMzI3LjM2Nyw0MDkuODA3eiBNNDAyLjUyLDE0OC4xNDloLTczLjE2MVYxMTUuODloODMuNDk5TDQwMi41MiwxNDguMTQ5eiBNMzgxLjQ1MywyMTMuODYxaC01Mi4wOTR2LTM3LjAzOCAgIGg2My45NjdMMzgxLjQ1MywyMTMuODYxeiBNMjM0LjU3MSwyMTMuODYxdi0zNy4wMzhoNjYuMTEzdjM3LjAzOEgyMzQuNTcxeiBNMzAwLjY4NCwyNDIuNTM4djMxLjA2NGgtNjYuMTEzdi0zMS4wNjRIMzAwLjY4NHogICAgTTEzOS4xMTUsMTc2LjgyM2g2Ni43ODR2MzcuMDM4aC01My45MzNMMTM5LjExNSwxNzYuODIzeiBNMjM0LjU3MSwxNDguMTQ5VjExNS44OWg2Ni4xMTN2MzIuMjU5SDIzNC41NzF6IE0yMDUuODk4LDExNS44OXYzMi4yNTkgICBoLTc2LjczNGwtMTEuMTkxLTMyLjI1OUgyMDUuODk4eiBNMTYxLjkxNiwyNDIuNTM4aDQzLjk4MnYzMS4wNjRoLTMzLjIwNkwxNjEuOTE2LDI0Mi41Mzh6IE0zMjkuMzU5LDI3My42MDN2LTMxLjA2NGg0Mi45MDkgICBsLTkuOTU1LDMxLjA2NEgzMjkuMzU5eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /> FoodBanks</a>
                 </div>
                 <div class="column textRight">
-                    <a class="a" id="right" href="https://www.buymeacoffee.com/isebasus">Contact</a>
-                    <a class="a" id="right" href="https://www.buymeacoffee.com/isebasus">About</a>
-               
+                    <a class="mobile-button" href="https://www.buymeacoffee.com/isebasus">
+                        <button class="button">
+                            <img class="buy" src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"> Buy me a coffee
+                        </button>
+                    </a>
+                    <a class="a" id="right" href="mailto:isebasus@gmail.com">Contact</a>
+                    <a class="desktop-button" href="https://www.buymeacoffee.com/isebasus">
+                        <button class="button">
+                            <img class="buy" src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"> Buy me a coffee
+                        </button>
+                    </a>
                 </div>
             </div>
-            <h1 id="first">Food Banks</h1>
+
             <h2 id="caption">Locate <i class="food">food banks</i> near you by simply entering a <i class="food">zip code</i>. <i class="wave">👌</i></h2>
             <div class="search">
                 <form action="/banks" method="GET">
@@ -426,7 +38,7 @@
             <p class="love">Made with 💖 by a student in highschool.</p>
         </div>
         <div class="about">
-            <div id="container" class="b">
+            <div id="container">
                <div class="columns">
                    <div class="parent">
                         <div class="project">
@@ -442,11 +54,12 @@
                     </div>
                     <div class="parent">
                         <div class="project">
-                            <h2 class="feature">✂️ Compare banks</h2>
+                            <h2 class="feature">📦 Compare banks</h2>
                             <p class="description">Check and compare which food banks are open and closest to you.</p>
                         </div>
                     </div>
                </div>
+
             </div>
         </div>
     </body>
