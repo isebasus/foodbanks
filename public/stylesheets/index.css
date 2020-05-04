@@ -124,7 +124,7 @@ div{
 
 .food{
     font-style: normal;
-    color:  rgba(15, 15, 16, 0.9);
+    color:  rgba(255, 91, 91, 0.9);
     font-weight: 500;
    
 }
@@ -264,7 +264,7 @@ margin-bottom: 30px;
 font-weight: 500;
 text-align: center;
 margin-top: 80px; 
-color: rgba(15, 15, 16, 0.9);
+color: rgba(9, 9, 26, 0.9);
 }
 
 .footer{
@@ -421,6 +421,10 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
             font-size: 1em;
         }
 
+        .about{
+            height: 100% ;
+        }
+
         button{
             font-size: 0.65em;
             padding: 0.5rem;
@@ -431,11 +435,11 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
         }
 
         input[type="text"]{
-            width: 80%;
+            width: 75%;
         }
 
         input[type="submit"]{
-            width: 80%;
+            width: 75%;
         }
 
         #container{
@@ -443,8 +447,15 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
         }
 
         #caption{
-            font-size: 2rem;
-            margin-top: 40px;
+            font-size: 1.5rem;
+            margin-top: 60px;
+            line-height: 1.2;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        #container{
+            margin-bottom: 80px;
         }
 
         input{
