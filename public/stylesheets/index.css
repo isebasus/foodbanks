@@ -259,6 +259,14 @@ margin-top: 10px;
 color: #0f0f10;
 }
 
+.err{
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 10px; 
+    color: #ff4242;
+}
+
 .search{
 display: block; 
 text-align: center;
