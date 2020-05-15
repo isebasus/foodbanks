@@ -1,0 +1,17 @@
+{  
+    "$jason": {    
+        "header": {      
+        },
+
+        "background": {      
+            "type": "html",
+            "url": "https://foodbanks.space",
+            "action": {
+                "trigger": "navigate"
+            }
+        },
+        "footer":{
+            
+        }  
+    }
+}
