@@ -1,17 +1,21 @@
 {  
     "$jason": {    
-        "header": {      
+        "head": {
+            "title": "{ ˃̵̑ᴥ˂̵̑}",
+            "actions": {
+                "$foreground": {
+                "type": "$reload"
+                }
+            }    
         },
-
-        "background": {      
-            "type": "html",
-            "url": "https://foodbanks.space",
-            "action": {
-                "trigger": "navigate"
+        "body": {      
+            "background": {
+                "type": "html",
+                "url": "https://foodbanks.space",
+                "action": {
+                    "trigger": "navigate"
+                }
             }
-        },
-        "footer":{
-            
-        }  
+        }
     }
 }
