@@ -1,7 +1,7 @@
 {  
     "$jason": {    
         "head": {
-            "title": "{ ˃̵̑ᴥ˂̵̑}",
+            "title": "FoodBanks",
             "actions": {
                 "$foreground": {
                 "type": "$reload"
@@ -9,6 +9,9 @@
             }    
         },
         "body": {      
+            "header": {
+                "title": "FoodBanks"
+            },
             "background": {
                 "type": "html",
                 "url": "https://foodbanks.space",

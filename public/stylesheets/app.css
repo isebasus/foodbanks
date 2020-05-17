@@ -17,92 +17,16 @@
 }
 
 body{
-    height: 100vh;
+    height: 99%;
     background-color: #fff;
     font-family: 'Roboto Mono', monospace;
     -webkit-font-smoothing: subpixel-antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-}
-
-.row{
-    margin-right: auto;
-    margin-left: auto;
-    display: flex;
-    min-height: 100%;
-}
-
-.column{
-    padding-right: .625rem;
-    padding-left: .625rem;
-    width: 100%;
-}
-
-.footer-column{
-    width: 100%;
-}
-
-.textLeft{
-    text-align: left;
-}
-
-.textRight{
-    text-align: right;
+    overflow: hidden;
+    display: grid;
 }
 
 
-.a{
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-    font-size: 1.25em;
-    text-decoration: none;
-    transition: 0.2s ease 0s;
-    color:  rgba(15, 15, 16, 0.9);
-}
-
-.footer-a{
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-    font-size: 1.25em;
-    text-decoration: none;
-    transition: 0.2s ease 0s;
-    color:  rgba(255, 255, 255, 1);
-}
-
-.time{
-    font-weight: 400;
-    font-style: normal;
-    color: rgba(255, 255, 255, 1);
-}
-
-#right{
-    font-weight: 400;
-    font-size: 1.2em;
-    color:rgba(15, 15, 16, 0.6);
-    padding-right: 10px;
-    transition: 0.2s ease;
-}
-
-#right:hover{
-    color:rgba(0, 0, 0, 1);
-}
-
-.about{
-    left:0;
-    background-color:#f0f0f0;
-    position: absolute;
-    height: 60%;
-    width: 100%;
-}
-.coffee{
-    text-decoration: none;
-    font-style: normal;
-}
-
-a{
-    cursor: pointer;
-    color:  rgba(15, 15, 16, 0.5); 
-}
 
 .color{
     color: #0f0f10;
@@ -165,47 +89,16 @@ input[type="text"]{
     width: 50%;
 }
 
-.image{
-    width: 100%;
-    padding-bottom: 60%;
-    background-size: cover;
-    background-image: url('https://i.ibb.co/zZ3zyJy/foodbanks-B.jpg');
-
-}
 
 #container {
     max-width: 980px;
-    margin: 0px auto;
-    padding: 20px 15px;
+    margin: auto;
     background-size: cover;
-    margin-bottom: 5%;
-}
-
-#footer-container{
-    max-width: 980px;
-    margin: 0px auto;
-    padding: 20px 15px;
+    padding: 40px 15px;
     background-size: cover;
+
 }
 
-.parent{
-    border-radius: 4px;
-    background-size: cover;
-    background-repeat: none;
-}
-
-.project{
-    position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-}
-
-.feature{
-    color: #0f0f10;
-    font-weight: 700;
-    font-size: 1.7em;
-    margin-bottom: -5px;
-}
 
 #first{
 padding-top: 30px;
@@ -222,33 +115,12 @@ margin-inline-end: 0px;
 color:  #0f0f10;  
 }
 
-#more-about{
-font-weight: 400;
-text-align: left;
-font-size: 0.8em;
--webkit-background-clip: text;
-color:  rgba(15, 15, 16, 0.5); 
-}
-
 .isebasus{
     font-size: 1.25em;
     font-weight: 700;
     color: rgba(255, 255, 255, 1);
     text-decoration: none;
     font-style: normal;
-}
-
-#made-by{
-font-weight: 400;
-text-align: right;
-font-size: 0.8em;
--webkit-background-clip: text;
-color:  rgba(15, 15, 16, 0.5); 
-
-}
-
-.desktop-button{
-
 }
 
 .mobile-button{
@@ -261,33 +133,6 @@ font-size: 1.1em;
 font-weight: 400;
 }
 
-.columns{
-padding-top: 20px;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-gap: 25px 25px;
-gap: 25px 50px;
-width: 100%;
-margin: 0px auto;
-}
-
-.footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(255, 91, 91, 0.9);
-    z-index: 99;
-}
-
-.column-image{
-padding-top: 20px;
-display: grid;
-grid-template-columns: repeat(1, 1fr);
-grid-gap: 25px 25px;
-gap: 25px 50px;
-width: 100%;
-margin: 0px auto;
-}
 
 .love{
 font-size: 0.8rem;
@@ -356,26 +201,6 @@ background-color: #ff4242;
 height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;
 }
 
-.buy{height: 25px !important;width: 26px !important;margin-bottom: 3px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}
-
-
-#headline {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 500;
-    color: #9D9D9D;
-    font-size: 24px;
-    text-align: center;
-    padding:30px 0px 0px 0px;
-    margin: 0px 0px 50px 0px;
-    animation: fade_in 1s ease-in forwards;
-    animation-delay: 0.5s;
-    visibility: hidden;
-    user-select: none;
-}
-
-#form {
-    position: relative;
-}
 
     @media only screen and (max-width: 995px){
         #first{
@@ -430,10 +255,6 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
             font-size: 1.1em;
         }
 
-        .row{
-            margin-top: -15px;
-        }
-
 
         #title{
             font-size: 1rem;
@@ -476,32 +297,8 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
             text-align: center;
             padding-top: 30px;
         }
-        .a{
-            font-size: 1.4em;
-        }
-
-        .footer-a{
-            font-size: 1em;
-        }
-
         .isebasus{
             font-size: 1em;
-        }
-
-        .feature{
-            font-size: 1.6em;
-        }
-
-        .description{
-            font-size: 1em;
-        }
-
-        #right{
-            font-size: 1em;
-        }
-
-        .about{
-            height: 900px;
         }
 
         .button{
@@ -522,11 +319,7 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
         }
 
         #container{
-            padding: 30px 15px;
-        }
-
-        #footer-container{
-            padding: 20px 20px;
+            padding: 20px 15px;
         }
 
         #caption{
@@ -552,18 +345,8 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
             font-size: 1.2em;
         }
 
-        .footer-a{
-            font-size: 1em;
-        }
-
         .isebasus{
             font-size: 1em;
-        }
-
-        .footer-column{
-            padding-top: 20px;
-            padding-right: .625rem;
-            padding-left: .625rem;
         }
 
     }
