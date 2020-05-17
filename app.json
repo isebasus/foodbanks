@@ -14,9 +14,20 @@
             },
             "background": {
                 "type": "html",
-                "url": "https://foodbanks.space",
+                "url": "https://foodbanks.space/appHome",
                 "action": {
                     "trigger": "navigate"
+                }
+            },
+            "footer": {
+                "tabs": {
+                    "style":{
+                        "background": "rgba(0,0,0,0.8)"
+                    },
+                    "items": [{
+                        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAAsklEQVQ4jcXPIW5CURCF4bkENAkhyIqqChQGyQ7YAA5bV8MWMJVdAZvB4DEIkqbBopAfgkty07zwHiSEk4yYOee/dybimcIEk0fhKQ65pvfCswyOMcIf5k3hT/xiWMw+sMdXHbzADu8V3hu2WFaBCd/YYHDjgx7W+EHrOuxg5aJugxO7ObtCpx0R/Yg4RUSklI5FUAmmlNI1k61TZquBsr/ltepWrtPrH2iXzf9bm3qv1Rkp1KyQHwugAAAAAABJRU5ErkJggg==",
+                        "urlj": "https://foodbanks.space/appHome"
+                    }]
                 }
             }
         }

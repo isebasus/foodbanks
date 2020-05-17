@@ -28,10 +28,6 @@ router.get('/map', function(req, res) {
     res.render("map");
 });
 
-router.get('/appHome', function(req, res) {
-    res.render("app", {error: ""});
-});
-
 router.get('/banks', function(req, res) {
     var location = req.query.location;
     var check = location.split("");
