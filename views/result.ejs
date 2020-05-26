@@ -350,11 +350,13 @@
             var int = 0;
             for(var i = 0; i < dataLocations.length; i++){
                 var locations = dataLocations[i];
+                  var infowindow = new google.maps.InfoWindow();
                   var marker = new google.maps.Marker({
                     position: {lat: locations.latitude, lng: locations.longitude},
                     icon: icon,
                     map: map,
                     id: 'marker_' + int,
+                    name: locations.name,
                   });
                   markers.push(marker);
                   google.maps.event.addListener(marker, 'click', (function(marker) {
@@ -381,6 +383,15 @@
                         map.setZoom(14);
                       }
                   })(marker));
+                  
+                  marker.addListener('mouseover', function() {
+                    infowindow.setContent('<p>' + this.name +'</p>');
+                    infowindow.open(map, this);
+
+                  });
+                  marker.addListener("mouseout", function() {
+                      infowindow.close();
+                  });
                   int++;
             }
         }
