@@ -91,7 +91,7 @@ body{
     left:0;
     background-color:#f0f0f0;
     position: absolute;
-    height: 60%;
+    height: 1000px;
     width: 100%;
 }
 .coffee{
@@ -173,8 +173,16 @@ input[type="text"]{
 
 }
 
+.cover{
+    background-blend-mode: screen;
+    transition: opacity .2s;
+    width: 100%;
+    background-size: cover;
+    background-repeat: none;
+}
+
 #container {
-    max-width: 980px;
+    max-width: 1000px;
     margin: 0px auto;
     padding: 20px 15px;
     background-size: cover;
@@ -182,22 +190,26 @@ input[type="text"]{
 }
 
 #footer-container{
-    max-width: 980px;
+    max-width: 1000px;
     margin: 0px auto;
     padding: 20px 15px;
     background-size: cover;
 }
 
 .parent{
-    border-radius: 4px;
     background-size: cover;
     background-repeat: none;
+    border-radius: 5px;
+}
+
+#padding{
+    padding: 10px;
 }
 
 .project{
+    border-radius: 5px;
     position: relative;
     overflow: hidden;
-    border-radius: 5px;
 }
 
 .feature{
@@ -205,6 +217,13 @@ input[type="text"]{
     font-weight: 700;
     font-size: 1.7em;
     margin-bottom: -5px;
+}
+
+#map-title{
+    color: #0f0f10;
+    font-weight: 700;
+    font-size: 1.7em;
+    text-align: left;
 }
 
 #first{
@@ -262,13 +281,28 @@ font-weight: 400;
 }
 
 .columns{
-padding-top: 20px;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-gap: 25px 25px;
-gap: 25px 50px;
-width: 100%;
-margin: 0px auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px 25px;
+    gap: 25px 50px;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.map-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px 25px;
+    gap: 25px 30px;
+    width: 100%;
+    margin: 0px auto;
+}
+
+#box{
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .footer{
@@ -317,6 +351,15 @@ font-weight: 500;
 text-align: center;
 margin-top: 80px; 
 color: rgba(9, 9, 26, 0.9);
+}
+
+#featured{
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 50px; 
+    color: rgba(9, 9, 26, 0.9);
 }
 
 
@@ -523,6 +566,14 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
 
         #container{
             padding: 30px 15px;
+        }
+
+        .mission{
+            width: 400px;
+            height: 100px;
+            background-color: black;
+            padding: 30px 15px;
+            margin-bottom: 70px;
         }
 
         #footer-container{
