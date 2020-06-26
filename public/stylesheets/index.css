@@ -91,7 +91,7 @@ body{
     left:0;
     background-color:#f0f0f0;
     position: absolute;
-    height: 1000px;
+    height: 1080px;
     width: 100%;
 }
 .coffee{
@@ -212,6 +212,10 @@ input[type="text"]{
     overflow: hidden;
 }
 
+#height{
+    height: 390px;
+}
+
 .feature{
     color: #0f0f10;
     font-weight: 700;
@@ -266,10 +270,6 @@ color:  rgba(15, 15, 16, 0.5);
 
 }
 
-.desktop-button{
-
-}
-
 .mobile-button{
 display: none;
 }
@@ -278,6 +278,24 @@ display: none;
 color:  #0f0f10; 
 font-size: 1.1em;
 font-weight: 400;
+}
+
+#center{
+    margin-top: -5px;
+    color:  #0f0f10; 
+    font-size: 1.1em;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.5em;
+    margin: 0 auto;
+}
+
+.titleAbout{
+    margin-top: 40px;
+    color:  #0f0f10; 
+    font-size: 1.7em;
+    font-weight: 500;
+    text-align: center;
 }
 
 .columns{
@@ -293,14 +311,9 @@ font-weight: 400;
 
 .map-container{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 25px 25px;
-    gap: 25px 30px;
+    grid-template-columns: repeat(1, 1fr);
     width: 100%;
     margin: 0px auto;
-}
-
-#box{
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.1);
 }
@@ -431,14 +444,30 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
 
     @media only screen and (max-width: 856px){
         .about{
-            height: 900px;
+            height: 1350px;
         }
+
     }
 
     @media only screen and (max-width: 850px){
         .columns{
             grid-template-columns: repeat(1, 1fr);
             width: 70%;
+            padding-bottom: 70px;
+        }
+
+        #center{
+            width: 90%;
+        }
+
+        .map-container{
+            width: 90%;
+        }
+    }
+
+    @media only screen and (max-width: 800px){
+        #height{
+            height: inherit;
         }
     }
 
@@ -543,8 +572,16 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
             font-size: 1em;
         }
 
+        .map-container{
+            width: 100%;
+        }
+
+        #center{
+            width: 100%
+        }
+
         .about{
-            height: 900px;
+            height: 1500px;
         }
 
         .button{
@@ -626,6 +663,8 @@ height: 27px !important;width: 27px !important;margin-bottom: 8px !important;box
     }
 
     @media only screen and (max-width: 330px){
-        
+        .about{
+            height: 1600px;
+        }
       
     }

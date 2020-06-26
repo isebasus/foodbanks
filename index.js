@@ -83,7 +83,7 @@ router.get('/result', function(req, res) {
     var parseLocation = location.substring(0, 2);
 
     queryA = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
-    queryB = '&key=AIzaSyA9OQiVI8dzIazsVuTueHHEJzuVYDsMqzw';
+    queryB = '&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI';
     var query = queryA + 'food+banks+' + location + queryB;
     
     let request = https.get(query, {json: true}, function(response){
@@ -118,7 +118,7 @@ router.get('/result', function(req, res) {
                     dataArr.splice(index, 1);
                 } else if (address.includes(parseLocation) && address.includes("United States")){
     
-                    var query = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&fields=name,website,formatted_phone_number&key=AIzaSyA9OQiVI8dzIazsVuTueHHEJzuVYDsMqzw";
+                    var query = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&fields=name,website,formatted_phone_number&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI";
                         
                     var object = {};
                     var open = [];
