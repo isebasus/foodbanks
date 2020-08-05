@@ -1,6 +1,6 @@
 # 🛍️ Grocery
 
-[![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/isebasus/FoodBanks/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/isebasus/FoodBanks/blob/master/LICENSE)
 
 A website where individuals financially struggling with the coronavirus can find food 🥔. 
 
