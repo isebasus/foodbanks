@@ -118,7 +118,7 @@ router.get('/result', function(req, res) {
                     dataArr.splice(index, 1);
                 } else if (address.includes(parseLocation) && address.includes("United States")){
     
-                    var query = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&fields=name,website,formatted_phone_number&key=AIzaSyChcI4CFgqLT1w-kmzJXotlA03pPHKjiqI";
+                    var query = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeId + "&fields=name,website,formatted_phone_number&key=secret 0_0";
                         
                     var object = {};
                     var open = [];
