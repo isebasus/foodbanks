@@ -1,5 +1,5 @@
 # 🛍️ FoodBanks [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/isebasus/FoodBanks/blob/master/LICENSE)
-## A website where individuals financially struggling with the coronavirus can find food 🥔. 
+## A website where individuals financially struggling with the coronavirus can find food. 
 
 ### 📍 About
 I thought it would be nice if I could help people struggling from the corona-virus pandemic. Through these harsh times, it's hard for financially deprived individuals to find food. So I created a website to locatte foodbanks near them. 
